@@ -5,7 +5,7 @@ import client from './graphql/client';
 
 import { BrowserRouter, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
-import Home from './pages/Home';
+import Home from './containers/home';
 
 
 /**

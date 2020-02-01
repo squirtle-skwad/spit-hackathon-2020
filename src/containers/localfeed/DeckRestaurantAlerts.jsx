@@ -11,7 +11,7 @@ const DeckRestaurantAlerts = () => {
     
     return (
         <>
-        <h4 style={{margin:"1rem"}}>Restaurant Donation</h4>  
+        <h4 style={{margin:"1rem"}}>Donation Alerts</h4>  
         <Row className="mx-auto">
             {
                 restaurantAlerts.map((value, index)=>
@@ -22,7 +22,7 @@ const DeckRestaurantAlerts = () => {
             }        
         </Row>
         
-        <h4 style={{margin:"1rem"}}>CheckPoint Donation</h4>  
+        {/* <h4 style={{margin:"1rem"}}>CheckPoint Donation</h4>  
         <Row className="mx-auto">
             {
                 checkPointAlerts.map((value, index)=>
@@ -32,7 +32,7 @@ const DeckRestaurantAlerts = () => {
                 )
             }        
         </Row>
-        
+         */}
         </>
     );
 }

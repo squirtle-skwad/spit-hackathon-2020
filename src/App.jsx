@@ -14,6 +14,8 @@ import DonationRequest from './containers/request_form';
 import DonationTracker from './containers/request_track';
 import Checkpoint from './containers/Checkpoint';
 import RestaurantDonationNearby from './containers/Restaurant/RestaurantDonationNearby'
+import VolunteerTrack from './containers/volunteer_track/VolunteerTrack';
+
 
 /**
  * @type {React.FC}
@@ -38,23 +40,20 @@ const App = () => {
             <Home />
         </Route>
 
-        <Route exact path='/restaurant_volunteer/:id' >
+        <Route exact path='/donation/:id' >
           <Navbar/>
           <RestaurantVolunteerPage/>
         </Route>
 
-        <Route exact path="/request">
+        <Route exact path="/donation/request">
           <Navbar />
           <DonationRequest />
         </Route>
 
-        <Route exact path="/track">
+        <Route exact path="/restaurant/tracker">
           <Navbar />
           <DonationTracker />
         </Route>
-        <Route exact path="/login"><Login/></Route>
-        <Route exact path="/signup"><SignUpPageDetails/></Route>
-        <Route exact path="/signup2"><SignUpPageSelection/></Route>
         <Route exact path="/checkpoint">
           <Navbar />
           <Checkpoint />
@@ -62,6 +61,25 @@ const App = () => {
         <Route exact path="/donation_request">
           <Navbar />
           <RestaurantDonationNearby />
+        </Route>
+        
+        <Route exact path="/login">
+          <Login/>
+        </Route>
+        <Route exact path="/signup">
+          
+          <SignUpPageDetails/>
+        </Route>
+        <Route exact path="/signup/selection">
+          <SignUpPageSelection/>
+        </Route>
+
+        <Route exact path="/volunteer/tracker">
+          <VolunteerTrack/>
+        </Route>
+
+        <Route exact path="/checkpoints/">
+          Checkpoints nearby
         </Route>
       </main>
     </AppProviders>

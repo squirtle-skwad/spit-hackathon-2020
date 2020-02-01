@@ -13,7 +13,7 @@ import { dummyUser } from '../helpers/auth';
  */
 const CustomNavbar = () => {
   const user =  dummyUser;
-  const user = useLocalStorage("user");
+  // const user = useLocalStorage("user");
 
   return (
     <Navbar color="primary" dark>

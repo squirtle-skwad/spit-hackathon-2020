@@ -50,7 +50,7 @@ const DonationRequestTracker = () => {
 
   return (
     <main className="d-flex flex-column">
-      <GoogleMap />
+      <GoogleMap logs={dataChain.donation_chain} />
       <Jumbotron className="d-flex justify-content-center align-items-center flex-column m-0">
         <Choose>
           <Choose.When condition={state === null}>

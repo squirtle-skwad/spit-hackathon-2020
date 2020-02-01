@@ -3,12 +3,20 @@ import GoogleMapReact from "google-map-react";
 import { useGeolocation } from 'react-use';
 import Marker from './marker.svg';
 
+const LogMarker = ({ log }) => {
+  return (
+    <div>
+      <img src={Marker} width={32} height={32} alt="hmm fuck" />
+    </div>
+  );
+};
+
 /**
  * @type {React.FC}
  */
-const TrackerMap = () => {
+const TrackerMap = ({ logs }) => {
   const location = useGeolocation();
-  const zoom = 15;
+  const zoom = 16;
   const lat = location.latitude, lng = location.longitude;
 
   if(location.loading) {
@@ -25,7 +33,7 @@ const TrackerMap = () => {
         center={{ lat, lng }}
         defaultZoom={zoom}
       >
-        <img src={Marker} width={zoom*2} height={zoom*2} lat={lat} lng={lng} />
+        {logs.map(l => <LogMarker log={l} lat={l.latitude} lng={l.longitude} />)}
       </GoogleMapReact>
     </div>
   );

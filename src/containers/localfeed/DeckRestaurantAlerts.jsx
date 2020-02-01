@@ -5,10 +5,10 @@ import { useGeolocation } from 'react-use';
 import * as queries from '../../graphql/queries/index'
 import RestaurantAlerts from './RestaurantAlerts';
 import {distance} from '../../helpers/distance';
+import LoadingPopup from '../../components/Loader/LoadingPopup';
 
 const DeckRestaurantAlerts = () =>{
     const state = useGeolocation();
-    const date  = Date.now()
     var dateobj = new Date();
     var dateobjISO = dateobj.toISOString();
     const donation_alert = []
@@ -31,7 +31,7 @@ const DeckRestaurantAlerts = () =>{
             <Query query={queries.DONATION_ALERT} variables={variables}>{
                         ({loading,error,data}) => {
                             if(loading){
-                                return <Spinner/>
+                                return <LoadingPopup/>
                             }
                             if(error){
                                 alert (error)

@@ -137,3 +137,18 @@ query donation_request($delivery_by_time:timestamptz!){
     id
   }
 }`
+
+export const GET_SCORES = gql`
+query getScores {
+  donation_volunteer(where: {assigned: {_eq: true}, role: {_neq: "restaurant"}}) {
+    donation_request {
+      quantity
+    }
+    role
+    volunteer {
+      name
+      id
+    }
+  }
+}
+`

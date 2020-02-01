@@ -15,6 +15,7 @@ import DonationTracker from './containers/request_track';
 import Checkpoint from './containers/Checkpoint';
 import RestaurantDonationNearby from './containers/Restaurant/RestaurantDonationNearby'
 import VolunteerTrack from './containers/volunteer_track/VolunteerTrack';
+import LeaderBoard from './containers/leader_board/LeaderBoard'
 
 
 /**
@@ -38,8 +39,8 @@ const App = () => {
         <Switch>
 
           <Route exact path="/">
-              <Navbar />
-              <Home />
+            <Navbar />
+            <Home />
           </Route>
 
           <Route exact path="/donation/request">
@@ -48,44 +49,50 @@ const App = () => {
           </Route>
 
           <Route exact path='/donation/:donationRequestId' >
-            <Navbar/>
-            <RestaurantVolunteerPage/>
+            <Navbar />
+            <RestaurantVolunteerPage />
           </Route>
 
-        <Route exact path="/tracker/:id">
-          <Navbar />
-          <DonationTracker />
-        </Route>
+          <Route exact path="/tracker/:id">
+            <Navbar />
+            <DonationTracker />
+          </Route>
 
-        <Route exact path="/checkpoint">
-          <Navbar />
-          <Checkpoint />
-        </Route>
+          <Route exact path="/checkpoint">
+            <Navbar />
+            <Checkpoint />
+          </Route>
 
-        <Route exact path="/donation_request">
-          <Navbar />
-          <RestaurantDonationNearby />
-        </Route>
-        
-        <Route exact path="/login">
-          <Login/>
-        </Route>
+          <Route exact path="/donation_request">
+            <Navbar />
+            <RestaurantDonationNearby />
+          </Route>
 
-        <Route exact path="/signup">
-          <SignUpPageDetails/>
-        </Route>
-        
-        <Route exact path="/signup/selection">
-          <SignUpPageSelection/>
-        </Route>
+          <Route exact path="/login">
+            <Login />
+          </Route>
 
-        <Route exact path="/volunteer/tracker">
-          <VolunteerTrack/>
-        </Route>
+          <Route exact path="/signup">
+            <SignUpPageDetails />
+          </Route>
+
+          <Route exact path="/signup/selection">
+            <SignUpPageSelection />
+          </Route>
+
+          <Route exact path="/volunteer/tracker">
+            <VolunteerTrack />
+          </Route>
 
           <Route exact path="/checkpoints/">
             Checkpoints nearby
           </Route>
+
+          <Route exact path="/leaderboard">
+            <Navbar />
+            <LeaderBoard />
+          </Route>
+
         </Switch>
       </main>
     </AppProviders>

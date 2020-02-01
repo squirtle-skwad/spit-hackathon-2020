@@ -13,6 +13,7 @@ import RestaurantVolunteerPage from './containers/donation_info_page'
 import DonationRequest from './containers/request_form';
 import DonationTracker from './containers/request_track';
 import Checkpoint from './containers/Checkpoint';
+import RestaurantDonationNearby from './containers/Restaurant/RestaurantDonationNearby'
 
 /**
  * @type {React.FC}
@@ -57,6 +58,10 @@ const App = () => {
         <Route exact path="/checkpoint">
           <Navbar />
           <Checkpoint />
+        </Route>
+        <Route exact path="/donation_request">
+          <Navbar />
+          <RestaurantDonationNearby />
         </Route>
       </main>
     </AppProviders>

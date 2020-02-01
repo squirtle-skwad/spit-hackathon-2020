@@ -14,3 +14,20 @@ query checkpoint_list($minlatitude:float8!,$maxlatitude:float8!, $minlongitude:f
     end_time
   }
 }`
+
+export const DONATION_REQUEST = gql`
+query donation_request($minlatitude:float8!,$maxlatitude:float8!, $minlongitude:float8!, $maxlongitude:float8!, $delivery_by_time:timestamptz!){
+  donation_request(where: {latitude: {_gte: $minlatitude, _lte: $maxlatitude}, longitude: {_gte: $minlongitude, _lte: $maxlongitude}, is_completed: {_eq: false}, delivery_by_time: {_lte: $delivery_by_time}} ) {
+    slum_area {
+      name
+    }
+    donor {
+      name
+    }
+    latitude
+    longitude
+    quantity
+  }
+}
+
+`

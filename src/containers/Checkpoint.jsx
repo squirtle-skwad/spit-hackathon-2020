@@ -6,7 +6,6 @@ import { Query } from 'react-apollo';
 
 
 const Checkpoint = () =>{
-    const [checkpoints,setCheckpoints] = useState([])
     const [loading, setLoading] = useState(true)
     const earthrad = 6415 
     const state = useGeolocation();
@@ -41,7 +40,7 @@ const Checkpoint = () =>{
                             console.log(data)
                             return(
                                 <ListGroup>{
-                                    checkpoints.map((checkpoint) => {
+                                    data.checkpoint.map((checkpoint) => {
                                        return( 
                                        <ListGroupItem> 
                                             {checkpoint.start_time}

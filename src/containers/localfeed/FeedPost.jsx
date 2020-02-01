@@ -4,9 +4,7 @@ import {
   } from 'reactstrap';
   
 const FeedPost = (props) => {
-
     const { image, caption, userName } =  props.details 
-
 
     return ( 
         <Card style={{ width: '19rem', margin:"1rem"}} className=" shadow">

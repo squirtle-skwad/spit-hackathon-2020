@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
-import ListFeedPost from './localfeed/ListFeedPost'
-import DeckRestaurantAlerts from './localfeed/DeckRestaurantAlerts'
+import ListFeedPost from './ListFeedPost'
+import DeckRestaurantAlerts from './DeckRestaurantAlerts'
 import { Container } from 'reactstrap';
 
 /**

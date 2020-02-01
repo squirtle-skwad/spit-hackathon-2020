@@ -1,7 +1,7 @@
 import React from 'react'
 import { ListGroup, ListGroupItem, Spinner } from 'reactstrap'
 import { useGeolocation } from 'react-use';
-import * as queries from '../graphql/queries/index'
+import * as queries from '../../graphql/queries/index'
 import { Query } from 'react-apollo';
 
 
@@ -42,6 +42,7 @@ const Checkpoint = () =>{
                                        return( 
                                        <ListGroupItem> 
                                             {checkpoint.start_time}
+                                            <br/>
                                             {checkpoint.end_time}
                                         </ListGroupItem>
                                        )

@@ -4,7 +4,7 @@ export const dummyUser = {
   "mobile_number": 9930780001,
   "name": "Vikrant Gajria",
   "type": {
-    "typeName": "restaunrant"
+    "typeName": "restaurant"
   }
 };
 

@@ -19,9 +19,19 @@ mutation signUp($name: String!, $email: String!, $password: String!, $phone: big
 
 export const LIST_CHECKPOINT = gql`
 query checkpoint_list($endtime:timestamptz!){
-  checkpoint(where: {end_time: {_lte: $endtime}}) {
+  checkpoint(where: {end_time: {_gte: $endtime}}) {
     start_time
     end_time
+  }
+}`
+
+export const CHECKPOINT_ALERT = gql`
+query checkpoint_list($end_time:timestamptz!){
+  checkpoint(where: {end_time: {_gte: $end_time}}) {
+    start_time
+    end_time
+    latitude
+    longitude
   }
 }`
 
@@ -78,3 +88,11 @@ query donation_request($delivery_by_time:timestamptz!){
     }
   }
 }`
+
+export const CREATE_CHECKPOINT = gql`
+mutation ($accuracy:float8!, $latitude:float8!, $longitude:float8!, $end_time:timestamptz!, $start_time:timestamptz!, $user_id:uuid!){
+  insert_checkpoint(objects: {accuracy: $accuracy, end_time: $end_time, latitude:$latitude, longitude:$longitude, start_time:$start_time, user_id:$user_id}) {
+    affected_rows
+  }
+}
+`

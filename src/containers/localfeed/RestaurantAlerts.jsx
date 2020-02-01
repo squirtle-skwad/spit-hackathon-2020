@@ -7,10 +7,10 @@ import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import "./RestaurantAlerts.css";
 
 const RestaurantAlerts = (props) => {
-    const { lat, lng, placeName, distance, quantity } = props
+    const { lat, lng, placeName, distance, quantity, donationRequestId } = props
     const routeHistory = useHistory()
     const redirectVolunteerFeed = (e) => {
-        routeHistory.push('donation/2')
+        routeHistory.push('donation/'+donationRequestId)
     }
     const [modal, setModal] = useState(false);
 

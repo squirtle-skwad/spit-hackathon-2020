@@ -59,7 +59,7 @@ const Checkpoint = () =>{
         </Query>
 
     </>
-    )
-}
+  );
+};
 
 export default Checkpoint;

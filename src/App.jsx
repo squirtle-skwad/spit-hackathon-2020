@@ -47,12 +47,12 @@ const App = () => {
             <DonationRequest />
           </Route>
 
-          <Route exact path='/donation/:id' >
+          <Route exact path='/donation/:donationRequestId' >
             <Navbar/>
             <RestaurantVolunteerPage/>
           </Route>
 
-        <Route exact path="/restaurant/tracker/:id">
+        <Route exact path="/tracker/:id">
           <Navbar />
           <DonationTracker />
         </Route>

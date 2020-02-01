@@ -13,6 +13,7 @@ mutation signUp($name: String!, $email: String!, $password: String!, $phone: big
         typeName
         id
       }
+      type_id
     }
   }
 }`
@@ -66,12 +67,69 @@ query userLogin($email:String!,$password:String!) {
     email
     type {
       typeName
+      id
     }
     id
+    type_id
     mobile_number
   }
-}`
+}
+`
 
+export const GET_VOLUNTEERS = gql`
+query getVolunteers($role: String!, $donationRequestId: uuid!) {
+  donation_volunteer(where: {role: {_eq: $role}, donation_request_id: {_eq: $donationRequestId}}, limit: 10) {
+    start_time
+    end_time
+    role
+    volunteer {
+      name
+      id
+    }
+    id
+  }
+}
+`
+
+export const INSERT_DONATION_VOLUNTEER = gql`
+mutation insertDonationVolunteer($volunteerId: uuid!, $donationRequestId: uuid!, $role: String!, $startTime: String!, $endTime: String!, $assigned: Boolean!) {
+  __typename
+  insert_donation_volunteer(objects: {volunteer_id: $volunteerId, donation_request_id: $donationRequestId, start_time: $startTime, end_time: $endTime, role: $role, assigned: $assigned}, on_conflict: {constraint: donation_volunteer_pkey, update_columns: assigned}) {
+    returning {
+      id
+    }
+  }
+}
+`
+
+export const INSERT_DONATION_CHAIN = gql`
+mutation insertDonationChain($longitude: float8, $latitude: float8, $accuracy: float8, $state: Int!, $donationVolunteerId: uuid!) {
+  __typename
+  insert_donation_chain(objects: {longitude: $longitude, latitude: $latitude, accuracy: $accuracy, donation_volunteer_id: $donationVolunteerId, state: $state}) {
+    affected_rows
+  }
+}
+`
+
+export const UPDATE_IS_ASSIGNED = gql`
+mutation updateIsAssigned($donationRequestId:uuid!) {
+  __typename
+  update_donation_request(where: {id: {_eq: $donationRequestId}}, _set: {is_assigned: true}) {
+    affected_rows
+  }
+}
+`
+
+export const UPDATE_DONATION_VOLUNTEER = gql`
+mutation updateDonationVolunteer($donationRequestId: uuid!,$volunteerId:uuid!) {
+  __typename
+  update_donation_volunteer(where: {donation_request_id: {_eq: $donationRequestId}, volunteer_id: {_eq: $volunteerId}}, _set: {assigned: true}) {
+    returning {
+      id
+    }
+  }
+}
+`
 export const DONATION_ALERT = gql`
 query donation_request($delivery_by_time:timestamptz!){
   donation_request(where: { delivery_by_time: {_gte: $delivery_by_time}}, limit: 5) {
@@ -86,6 +144,7 @@ query donation_request($delivery_by_time:timestamptz!){
     donor {
       name
     }
+    id
   }
 }`
 

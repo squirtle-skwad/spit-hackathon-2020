@@ -1,7 +1,7 @@
-export const STATE = 
-{
-    1:"Item given by restaurant",
-    2:"Item taken by transporter",
-    3:"Item dropped by transporter",
-    4:"Item given by distributor",
-} 
+export const STATE_MAP = {
+    1: "Item given by restaurant",
+    2: "Item taken by transporter",
+    3: "Item dropped by transporter",
+    4: "Item given by distributor",
+    11: "Item given by restaurant is not good quality",
+};

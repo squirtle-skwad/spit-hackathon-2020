@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { ListGroup, ListGroupItem, Spinner } from 'reactstrap'
 import { useGeolocation } from 'react-use';
 import * as queries from '../graphql/queries/index'
@@ -6,8 +6,7 @@ import { Query } from 'react-apollo';
 
 
 const Checkpoint = () =>{
-    const [loading, setLoading] = useState(true)
-    const earthrad = 6415 
+    const earthrad = 6415;
     const state = useGeolocation();
     var dateobj = new Date();
     var dateobjISO = dateobj.toISOString();

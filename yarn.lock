@@ -8757,6 +8757,13 @@ react-error-overlay@^6.0.4:
   resolved "https://registry.npmjs.org/react-error-overlay/-/react-error-overlay-6.0.4.tgz#0d165d6d27488e660bc08e57bdabaad741366f7a"
   integrity sha512-ueZzLmHltszTshDMwyfELDq8zOA803wQ1ZuzCccXa1m57k1PxSHfflPD5W9YIiTXLs0JTLzoj6o1LuM5N6zzNA==
 
+react-extras@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.npmjs.org/react-extras/-/react-extras-1.0.1.tgz#d9690dab83361d7132df4da572d1d801c628362f"
+  integrity sha512-j7dKvWwrYjLLAjqXkFLk1BOjcGKOox9TFUqzU5VtiL4LTtUyCpbBNnglEY2uoh8JyqrMnVZcDp3JpRWTDQURog==
+  dependencies:
+    prop-types "^15.6.2"
+
 react-fast-compare@^2.0.4:
   version "2.0.4"
   resolved "https://registry.npmjs.org/react-fast-compare/-/react-fast-compare-2.0.4.tgz#e84b4d455b0fec113e0402c329352715196f81f9"

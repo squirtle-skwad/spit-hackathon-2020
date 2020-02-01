@@ -13,6 +13,7 @@ mutation signUp($name: String!, $email: String!, $password: String!, $phone: big
         typeName
         id
       }
+      type_id
     }
   }
 }`
@@ -57,8 +58,10 @@ query userLogin($email:String!,$password:String!) {
     email
     type {
       typeName
+      id
     }
     id
+    type_id
     mobile_number
   }
 }

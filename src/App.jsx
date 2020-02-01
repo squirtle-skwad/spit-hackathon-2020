@@ -12,7 +12,7 @@ import Home from './containers/localfeed';
 import RestaurantVolunteerPage from './containers/donation_info_page'
 import DonationRequest from './containers/request_form';
 import DonationTracker from './containers/request_track';
-
+import Checkpoint from './containers/Checkpoint';
 
 /**
  * @type {React.FC}
@@ -54,6 +54,10 @@ const App = () => {
         <Route exact path="/login"><Login/></Route>
         <Route exact path="/signup"><SignUpPageDetails/></Route>
         <Route exact path="/signup2"><SignUpPageSelection/></Route>
+        <Route exact path="/checkpoint">
+          <Navbar />
+          <Checkpoint />
+        </Route>
       </main>
     </AppProviders>
   );

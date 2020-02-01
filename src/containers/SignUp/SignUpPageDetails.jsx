@@ -5,6 +5,7 @@ import Login from "../Login/Login"
 import { Mutation } from 'react-apollo';
 import * as queries from '../../graphql/queries/index'
 import {useHistory} from 'react-router-dom'
+
 const SignUpPageDetails = (props) =>{
 
         const [firstname,setFirstName] = useState('')

@@ -38,8 +38,7 @@ query donation_request($minlatitude:float8!,$maxlatitude:float8!, $minlongitude:
     longitude
     quantity
   }
-}
-`
+}`
 
 export const UPDATE_USER_TYPE = gql`
 mutation updateUserType($typeId:Int!,$userId:uuid!) {
@@ -61,5 +60,16 @@ query userLogin($email:String!,$password:String!) {
     id
     mobile_number
   }
-}
-`
+}`
+
+export const DONATION_ALERT = gql`
+query donation_request($minlatitude:float8!,$maxlatitude:float8!, $minlongitude:float8!, $maxlongitude:float8!, $delivery_by_time:timestamptz!){
+  donation_request(where: {latitude: {_gte: $minlatitude, _lte: $maxlatitude}, longitude: {_gte: $minlongitude, _lte: $maxlongitude}, is_completed: {_eq: false}, delivery_by_time: {_lte: $delivery_by_time}} limit: 5) {
+    slum_area {
+      latitude
+      longitude
+    }
+    quantity
+    delivery_by_time
+  }
+}`

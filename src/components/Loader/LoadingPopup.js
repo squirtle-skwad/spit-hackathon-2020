@@ -6,7 +6,7 @@ import Spinner from './Spinner';
 
 function LoadingPopup(props) {
     return (
-        <Modal isOpen={props.isOpen}>
+        <Modal isOpen={props.isOpen || true}>
             <ModalBody>
                 <Spinner />
             </ModalBody>

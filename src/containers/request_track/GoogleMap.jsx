@@ -1,37 +1,34 @@
 import React from "react";
 import GoogleMapReact from "google-map-react";
+import { useGeolocation } from 'react-use';
+import Marker from './marker.svg';
 
-const AnyReactComponent = ({ text }) => (
-  <div
-    style={{
-      color: "white",
-      background: "grey",
-      padding: "15px 10px",
-      display: "inline-flex",
-      textAlign: "center",
-      alignItems: "center",
-      justifyContent: "center",
-      borderRadius: "100%",
-      transform: "translate(-50%, -50%)"
-    }}
-  >
-    {text}
-  </div>
-);
-
-const SimpleMap = props => {
-  const lat = 59.33;
-  const lng = 30.33;
-  const placeName = "The J";
+/**
+ * @type {React.FC}
+ */
+const TrackerMap = () => {
+  const location = useGeolocation();
   const zoom = 15;
+  const lat = location.latitude, lng = location.longitude;
+
+  if(location.loading) {
+    return <span>Loading...</span>
+  }
 
   return (
-    <div style={{ width: "100%", height: "30rem", }}>
-      <GoogleMapReact defaultCenter={{ lat: lat, lng: lng }} defaultZoom={zoom}>
-        <AnyReactComponent lat={lat} lng={lng} text={placeName} />
+    <div style={{ width: "100%", height: "30rem" }}>
+      <GoogleMapReact
+        bootstrapURLKeys={{
+          key: process.env.REACT_APP_GOOGLE_MAPS_KEY,
+          language: "en"
+        }}
+        center={{ lat, lng }}
+        defaultZoom={zoom}
+      >
+        <img src={Marker} width={zoom*2} height={zoom*2} lat={lat} lng={lng} />
       </GoogleMapReact>
     </div>
   );
 };
 
-export default SimpleMap;
+export default TrackerMap;

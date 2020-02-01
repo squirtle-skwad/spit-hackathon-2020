@@ -9,7 +9,7 @@ import { useParams } from 'react-router-dom';
 import { useQuery } from 'react-apollo';
 import { Choose } from 'react-extras';
 import { getUserDetails } from '../../helpers/auth';
-import { GET_MAX_STATE, FIND_DONATION_VOLUNTEER_ID } from '../../graphql/queries/chain';
+import { GET_MAX_STATE, FIND_DONATION_VOLUNTEER_ID, GET_DONATION_CHAIN } from '../../graphql/queries/chain';
 import LoadingPopup from '../../components/Loader/LoadingPopup';
 
 /**
@@ -35,7 +35,13 @@ const DonationRequestTracker = () => {
     pollInterval: 500,
   });
 
-  if(loadingDonation || loadingState) {
+  const { data: dataChain, loading: loadingChain } = useQuery(GET_DONATION_CHAIN, {
+    variables: {
+      id,
+    }
+  });
+
+  if(loadingDonation || loadingState || loadingChain) {
     return <LoadingPopup />;
   }
 
@@ -45,7 +51,7 @@ const DonationRequestTracker = () => {
   return (
     <main className="d-flex flex-column">
       <GoogleMap />
-      <Jumbotron className="d-flex justify-content-center align-items-center flex-column">
+      <Jumbotron className="d-flex justify-content-center align-items-center flex-column m-0">
         <Choose>
           <Choose.When condition={state === null}>
             <ActionButton state={1}>Gave Food</ActionButton>
@@ -60,12 +66,15 @@ const DonationRequestTracker = () => {
           <Choose.When condition={state === 3}>
             <ActionButton state={4}>Food Distributed</ActionButton>
           </Choose.When>
+          <Choose.When condition={state === 4 || state === 11}>
+            <h3>Thank you for contributing to a better society!</h3>
+          </Choose.When>
           <Choose.Otherwise>
             <span>Status = {state}</span>
           </Choose.Otherwise>
         </Choose>
       </Jumbotron>
-      <Log />
+      <Log data={dataChain.donation_chain} />
     </main>
   );
 };

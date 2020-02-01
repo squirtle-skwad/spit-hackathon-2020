@@ -74,9 +74,16 @@ export const GET_DONATION_CHAIN = gql`
       state
       accuracy
       created_at
+      donation_volunteer {
+        volunteer {
+          name
+          mobile_number
+        }
+      }
     }
   }
 `;
+
 
 export const UPDATE_DONATION_CHAIN = gql`
   mutation UPDATE_DONATION_STATUS (

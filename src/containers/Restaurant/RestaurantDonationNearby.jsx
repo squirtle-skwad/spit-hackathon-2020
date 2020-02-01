@@ -5,20 +5,10 @@ import { useGeolocation } from 'react-use';
 import * as queries from '../../graphql/queries/index'
 
 const RestaurantDonationNearby = () =>{
-    const state = useGeolocation();
-    var dateobj = new Date();
-    var dateobjISO = dateobj.toISOString();
+    var dateobjISO = new Date().toISOString();
     console.log(dateobjISO)
-    const rad2degree = (value) =>{
-        return value *  180 / Math.PI 
-    }
-
 
     const variables = {
-        // minlatitude: state.latitude -  rad2degree(3/6415),
-        // maxlatitude: state.latitude +  rad2degree(3/6415),
-        // maxlongitude: state.latitude + rad2degree(3/6415),
-        // minlongitude: state.latitude - rad2degree(3/6415),
         delivery_by_time:dateobjISO  // To check that the current time is less than the expiration time
     }
 

@@ -19,16 +19,16 @@ mutation signUp($name: String!, $email: String!, $password: String!, $phone: big
 }`
 
 export const LIST_CHECKPOINT = gql`
-query checkpoint_list($minlatitude:float8!,$maxlatitude:float8!, $minlongitude:float8!, $maxlongitude:float8!, $endtime:timestamptz!){
-  checkpoint(where: {latitude: {_gte: $minlatitude, _lte: $maxlatitude}, longitude: {_gte: $minlongitude, _lte: $maxlongitude}, end_time: {_gte: $endtime}}) {
+query checkpoint_list($endtime:timestamptz!){
+  checkpoint(where: {end_time: {_lte: $endtime}}) {
     start_time
     end_time
   }
 }`
 
 export const DONATION_REQUEST = gql`
-query donation_request($minlatitude:float8!,$maxlatitude:float8!, $minlongitude:float8!, $maxlongitude:float8!, $delivery_by_time:timestamptz!){
-  donation_request(where: {latitude: {_gte: $minlatitude, _lte: $maxlatitude}, longitude: {_gte: $minlongitude, _lte: $maxlongitude}, is_completed: {_eq: false}, delivery_by_time: {_lte: $delivery_by_time}} ) {
+query donation_request($delivery_by_time:timestamptz!){
+  donation_request(where: {is_completed: {_eq: false}, delivery_by_time: {_gte: $delivery_by_time}} ) {
     slum_area {
       name
     }
@@ -39,8 +39,7 @@ query donation_request($minlatitude:float8!,$maxlatitude:float8!, $minlongitude:
     longitude
     quantity
   }
-}
-`
+}`
 
 export const UPDATE_USER_TYPE = gql`
 mutation updateUserType($typeId:Int!,$userId:uuid!) {
@@ -64,5 +63,21 @@ query userLogin($email:String!,$password:String!) {
     type_id
     mobile_number
   }
-}
-`
+}`
+
+export const DONATION_ALERT = gql`
+query donation_request($delivery_by_time:timestamptz!){
+  donation_request(where: { delivery_by_time: {_gte: $delivery_by_time}}, limit: 5) {
+    latitude
+    longitude
+    slum_area {
+      latitude
+      longitude
+    }
+    quantity
+    delivery_by_time
+    donor {
+      name
+    }
+  }
+}`

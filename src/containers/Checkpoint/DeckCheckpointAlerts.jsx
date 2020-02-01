@@ -3,12 +3,12 @@ import { Query } from 'react-apollo';
 import { Row, Col, ListGroup, ListGroupItem, Spinner } from 'reactstrap'
 import { useGeolocation } from 'react-use';
 import * as queries from '../../graphql/queries/index'
-import RestaurantAlerts from './RestaurantAlerts';
+import CheckpointAlerts from './CheckpointAlerts';
 import {distance} from '../../helpers/distance';
-import LoadingPopup from '../../components/Loader/LoadingPopup';
 
-const DeckRestaurantAlerts = () =>{
+const DeckCheckpointAlerts = () =>{
     const state = useGeolocation();
+    const date  = Date.now()
     var dateobj = new Date();
     var dateobjISO = dateobj.toISOString();
     
@@ -22,37 +22,31 @@ const DeckRestaurantAlerts = () =>{
         // maxlatitude: state.latitude +  rad2degree(3/6415),
         // maxlongitude: state.latitude + rad2degree(3/6415),
         // minlongitude: state.latitude - rad2degree(3/6415),
-        delivery_by_time:dateobjISO  // To check that the current time is less than the expiration time
+        end_time:dateobjISO  // To check that the current time is less than the expiration time
     }
 
     return (
         <>
-            <Query query={queries.DONATION_ALERT} variables={variables}>{
+            <Query query={queries.CHECKPOINT_ALERT} variables={variables}>{
                         ({loading,error,data}) => {
                             if(loading){
-                                return <LoadingPopup/>
+                                return <Spinner/>
                             }
                             if(error){
                                 alert (error)
                             }
                             
                             if(data){
-                                // donation_alert.push(...data.donation_request)
-                                // donation_alert.sort(function(left,right){
-                                //     return (left.delivery_by_time).diff(date)
-                                // });
                                 return (
-                                    
                                     <>
-                                    {console.log(data.donation_request)}
-                                    <h4 style={{margin:"1rem"}}>Donation Alerts</h4>  
+                                    {/* {console.log(data.donation_request)} */}
+                                    <h4 style={{margin:"1rem"}}>Checkpoint Alerts</h4>  
                                     <Row className="mx-auto">
                                         {
-                                    
-                                            data.donation_request.map((value)=>
+                                            data.checkpoint.map((value)=>
                                                 <Col xs="auto"  style={{ margin:"1rem"}}>
-                                                    <RestaurantAlerts distance={distance(value.latitude,value.longitude,state.latitude,state.longitude)}
-                                                        quantity={value.quantity} lat={value.latitude} lng={value.longitude} placeName={value.donor.name} donationRequestId = {value.id} />
+                                                    <CheckpointAlerts distance={distance(value.latitude,value.longitude,state.latitude,state.longitude)}
+                                                    lat={value.latitude} lng={value.longitude} start_time={value.start_time} end_time={value.end_time}/>
                                                 </Col>
                                             )
                                         }        
@@ -69,4 +63,4 @@ const DeckRestaurantAlerts = () =>{
         )
 }
  
-export default DeckRestaurantAlerts;
+export default DeckCheckpointAlerts;

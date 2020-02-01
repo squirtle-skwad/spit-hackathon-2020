@@ -148,6 +148,20 @@ query donation_request($delivery_by_time:timestamptz!){
   }
 }`
 
+export const GET_SCORES = gql`
+query getScores {
+  donation_volunteer(where: {assigned: {_eq: true}, role: {_neq: "restaurant"}}) {
+    donation_request {
+      quantity
+    }
+    role
+    volunteer {
+      name
+      id
+    }
+  }
+}
+`
 export const CREATE_CHECKPOINT = gql`
 mutation ($accuracy:float8!, $latitude:float8!, $longitude:float8!, $end_time:timestamptz!, $start_time:timestamptz!, $user_id:uuid!){
   insert_checkpoint(objects: {accuracy: $accuracy, end_time: $end_time, latitude:$latitude, longitude:$longitude, start_time:$start_time, user_id:$user_id}) {

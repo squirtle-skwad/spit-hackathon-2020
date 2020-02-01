@@ -1,27 +1,25 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { Query } from 'react-apollo';
 import { ListGroup, ListGroupItem, Spinner } from 'reactstrap'
 import { useGeolocation } from 'react-use';
 import * as queries from '../../graphql/queries/index'
 
 const RestaurantDonationNearby = () =>{
-    const [loading, setLoading] = useState(true)
-    const earthrad = 6415 
     const state = useGeolocation();
     var dateobj = new Date();
     var dateobjISO = dateobj.toISOString();
-
+    console.log(dateobjISO)
     const rad2degree = (value) =>{
         return value *  180 / Math.PI 
     }
 
 
     const variables = {
-        minlatitude: state.latitude -  rad2degree(3/6415),
-        maxlatitude: state.latitude +  rad2degree(3/6415),
-        maxlongitude: state.latitude + rad2degree(3/6415),
-        minlongitude: state.latitude - rad2degree(3/6415),
-        delivery_by_time:dateobjISO
+        // minlatitude: state.latitude -  rad2degree(3/6415),
+        // maxlatitude: state.latitude +  rad2degree(3/6415),
+        // maxlongitude: state.latitude + rad2degree(3/6415),
+        // minlongitude: state.latitude - rad2degree(3/6415),
+        delivery_by_time:dateobjISO  // To check that the current time is less than the expiration time
     }
 
     return (

@@ -10,7 +10,7 @@ import { useGeolocation } from 'react-use';
 import { useHistory } from 'react-router-dom';
 import { useInput } from '../../helpers/hooks';
 import { useMutation } from 'react-apollo';
-import { REQUEST_DONATION } from '../../graphql/queries';
+import { REQUEST_DONATION, ADD_RESTAURANT_AS_VOLUNTEER } from '../../graphql/queries';
 import { getUserDetails } from '../../helpers/auth';
 
 /**
@@ -18,6 +18,7 @@ import { getUserDetails } from '../../helpers/auth';
  */
 const DonationRequest = () => {
   const [insertDonationRequest] = useMutation(REQUEST_DONATION);
+  const [insertAsVolunteer] = useMutation(ADD_RESTAURANT_AS_VOLUNTEER);
   const location = useGeolocation();
   const routeHistory = useHistory();
 
@@ -25,7 +26,7 @@ const DonationRequest = () => {
   const deliverByInput = useInput(new Date().toISOString());
   const [slum, setSlum] = useState();
 
-  const fileRequest = (e) => {
+  const fileRequest = async (e) => {
     e.preventDefault();
 
     const variables = {
@@ -38,16 +39,18 @@ const DonationRequest = () => {
       longitude: location.longitude,
     };
 
-    insertDonationRequest({
+    const { data } = await insertDonationRequest({
       variables,
-    })
-      .then(({ data }) => {
-        routeHistory.push(`/restaurant/tracker/${data.insert_donation_request.returning[0].id}`);
-      })
-      .catch(e => {
-        console.error(e);
-        alert(JSON.stringify(e));
-      });
+    });
+
+    await insertAsVolunteer({
+      variables: {
+        volunteer_id: getUserDetails().id,
+        donation_request_id: data.insert_donation_request.returning[0].id,
+      },
+    });
+    
+    routeHistory.push(`/restaurant/tracker/${data.insert_donation_request.returning[0].id}`);
   };
 
   return (

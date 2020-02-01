@@ -16,10 +16,6 @@ const RestaurantDonationNearby = () => {
 
 
     const variables = {
-        // minlatitude: state.latitude -  rad2degree(3/6415),
-        // maxlatitude: state.latitude +  rad2degree(3/6415),
-        // maxlongitude: state.latitude + rad2degree(3/6415),
-        // minlongitude: state.latitude - rad2degree(3/6415),
         delivery_by_time: dateobjISO  // To check that the current time is less than the expiration time
     }
 

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
+import {Badge} from 'reactstrap'
 import SimpleMap from "./TestGoogleMap";
 import CountDownClock from "./CountDownClock";
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
@@ -7,7 +8,7 @@ import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import "./RestaurantAlerts.css";
 
 const RestaurantAlerts = (props) => {
-    const { lat, lng, placeName, distance, quantity, donationRequestId } = props
+    const { lat, lng, placeName, distance, quantity, donationRequestId, deliverTime, slum } = props
     const routeHistory = useHistory()
     const redirectVolunteerFeed = (e) => {
         routeHistory.push('donation/'+donationRequestId)
@@ -22,12 +23,12 @@ const RestaurantAlerts = (props) => {
             <Button outline color="secondary" id="storyButton" className="rounded-circle text-center" onClick={toggle}>{distance}km<br />{quantity}kg</Button>
             <div>
                 <Modal centered isOpen={modal} toggle={toggle}>
-                    <ModalHeader toggle={toggle}>{placeName}</ModalHeader>
+                    <ModalHeader toggle={toggle} cssModule={{'modal-title': 'w-100 text-center'}}>{placeName}</ModalHeader>
                     <ModalBody>
                         <SimpleMap lat={lat} lng={lng} placeName={placeName} />
-                        <h4>Quantity: {quantity}kg</h4>
-                        <h4>Slum Location: {quantity}</h4>
-                        <CountDownClock expireTime={(Date.now() - 1580463085058) / 1000} />
+                        <h4><Badge color="secondary" light style={{marginRight:"1rem"}}>Quantity</Badge> {quantity}kg</h4>
+                        <h4><Badge color="primary" dark style={{marginRight:"1rem"}}>Slum</Badge>{slum}</h4>
+                        <CountDownClock expireTime={(deliverTime-Date.now()) / 1000} />
                     </ModalBody>
                     <ModalFooter>
                         <Button color="primary" onClick={()=>redirectVolunteerFeed()}>Volunteer</Button>{' '}
@@ -38,6 +39,5 @@ const RestaurantAlerts = (props) => {
         </>
     );
 }
-
 
 export default RestaurantAlerts;

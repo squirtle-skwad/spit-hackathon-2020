@@ -52,7 +52,7 @@ const App = () => {
             <RestaurantVolunteerPage/>
           </Route>
 
-        <Route exact path="/restaurant/tracker/:id">
+        <Route exact path="/tracker/:id">
           <Navbar />
           <DonationTracker />
         </Route>

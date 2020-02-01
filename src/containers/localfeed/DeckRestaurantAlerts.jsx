@@ -53,7 +53,7 @@ const DeckRestaurantAlerts = () =>{
                                             data.donation_request.map((value)=>
                                                 <Col xs="auto"  style={{ margin:"1rem"}}>
                                                     <RestaurantAlerts distance={distance(value.latitude,value.longitude,state.latitude,state.longitude)}
-                                                        quantity={value.quantity}/>
+                                                        quantity={value.quantity} lat={value.latitude} lng={value.longitude} placeName={value.donor.name} donationRequestId = {value.id} />
                                                 </Col>
                                             )
                                         }        

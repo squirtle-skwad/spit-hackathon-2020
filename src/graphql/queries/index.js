@@ -134,5 +134,6 @@ query donation_request($delivery_by_time:timestamptz!){
     donor {
       name
     }
+    id
   }
 }`

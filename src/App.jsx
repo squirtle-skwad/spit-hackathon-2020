@@ -12,6 +12,7 @@ import Home from './containers/localfeed';
 import RestaurantVolunteerPage from './containers/donation_info_page'
 import DonationRequest from './containers/request_form';
 import DonationTracker from './containers/request_track';
+import VolunteerTrack from './containers/volunteer_track/VolunteerTrack';
 
 
 /**
@@ -56,6 +57,7 @@ const App = () => {
           <Login/>
         </Route>
         <Route exact path="/signup">
+          
           <SignUpPageDetails/>
         </Route>
         <Route exact path="/signup/selection">
@@ -63,7 +65,7 @@ const App = () => {
         </Route>
 
         <Route exact path="/volunteer/tracker">
-          Volunteer Tracker (Parag)
+          <VolunteerTrack/>
         </Route>
 
         <Route exact path="/checkpoints/">

@@ -8,7 +8,7 @@ const RestaurantAlerts = (props) => {
     const { distance, quantity } = props.details
     const routeHistory = useHistory()
     const redirectVolunteerFeed = (e) =>{
-        routeHistory.push('restaurant_volunteer/2')
+        routeHistory.push('donation/2')
     }   
     
     

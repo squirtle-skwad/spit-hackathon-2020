@@ -24,7 +24,7 @@ const CustomNavbar = () => {
       <NavbarBrand tag={Link} to="/">FoodFeed</NavbarBrand>
 
       {user.type.typeName === 'volunteer'
-        ? <Button className="ml-auto" tag={Link} to="/checkpoints">Checkpoints</Button>
+        ? <Button className="ml-auto" tag={Link} to="/checkpoint">Checkpoints</Button>
         : <Button className="ml-auto" tag={Link} to="/donation/request">Donate</Button>
       }
     </Navbar>

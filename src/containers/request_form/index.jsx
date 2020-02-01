@@ -50,7 +50,7 @@ const DonationRequest = () => {
       },
     });
     
-    routeHistory.push(`/restaurant/tracker/${data.insert_donation_request.returning[0].id}`);
+    routeHistory.push(`/tracker/${data.insert_donation_request.returning[0].id}`);
   };
 
   return (

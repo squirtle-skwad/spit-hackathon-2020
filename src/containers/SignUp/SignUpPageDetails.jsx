@@ -1,10 +1,12 @@
 import React,{useState} from 'react';
-import {Card, CardText, Button, Spinner} from 'reactstrap'
+import {Card, CardText, Button } from 'reactstrap'
 import Input from "../../components/LidoInput/Input"
-import Login from "../Login/Login"
+import LoadingPopup from '../../components/Loader/LoadingPopup'
 import { Mutation } from 'react-apollo';
 import * as queries from '../../graphql/queries/index'
 import {useHistory} from 'react-router-dom'
+import {setUserDetails } from '../../helpers/auth'
+
 const SignUpPageDetails = (props) =>{
 
         const [firstname,setFirstName] = useState('')
@@ -14,7 +16,6 @@ const SignUpPageDetails = (props) =>{
         const [password, setPassword] = useState('')
         const [password2, setPassword2] = useState('')
         const [isValidEmail,setValidEmail] = useState(false)
-        const [isLoading,setLoading] = useState(false)
         const history = useHistory()
 
         const validEmail = (curr)=>{
@@ -25,7 +26,6 @@ const SignUpPageDetails = (props) =>{
         }
 
         const SignUp = (postMutation) => {
-            setLoading(true)
             const variables = {
                 name : firstname + " " + lastname,
                 email,
@@ -34,8 +34,7 @@ const SignUpPageDetails = (props) =>{
             }
             postMutation({ variables }).then(
                 resp =>{
-                    console.log(resp)
-                    setLoading(false)
+                    setUserDetails(resp.data.insert_user.returning[0])
                     history.push('signup/selection')
                 }
             )   
@@ -52,12 +51,11 @@ const SignUpPageDetails = (props) =>{
                 <Input type = 'password' placeholder={'Password'} label={'Password '} valid={true} value = {password} onChange={(curr) => {setPassword(curr)}}/>
                 <Input type = 'password' placeholder={'Password Again'} label={'Confirm Password '} valid={true} value = {password2} onChange={(curr) => {setPassword2(curr)}}/>
                 {password===password2 || password2===""? null: <h6 style={{color:"red"}}>Password does not match</h6>}
-                {/* <Button type="submit"  onClick={()=>history.push('signup/selection')}>Submit</Button> */}
                 <Mutation mutation={queries.CREATE_USER} >
                 {
                     (postMutation,{loading,error}) => {
                         if(loading){
-                            return
+                            return  <LoadingPopup isLoading/>
                         }
                         if (error){
 
@@ -68,7 +66,7 @@ const SignUpPageDetails = (props) =>{
                     }
                 }
                 </Mutation>
-                {isLoading ? <Spinner animation="grow" /> : null}
+
                 
                 </CardText>
             </Card>

@@ -8,5 +8,6 @@ export const dummyUser = {
   }
 };
 
+
 export const setUserDetails = (user) => localStorage.setItem("user", JSON.stringify(user));
 export const getUserDetails = () => dummyUser || JSON.parse(localStorage.getItem("user"));

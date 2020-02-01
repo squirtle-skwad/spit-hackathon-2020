@@ -12,6 +12,9 @@ import Home from './containers/localfeed';
 import RestaurantVolunteerPage from './containers/donation_info_page'
 import DonationRequest from './containers/request_form';
 import DonationTracker from './containers/request_track';
+import Checkpoint from './containers/Checkpoint';
+import RestaurantDonationNearby from './containers/Restaurant/RestaurantDonationNearby'
+import VolunteerTrack from './containers/volunteer_track/VolunteerTrack';
 
 
 /**
@@ -49,23 +52,36 @@ const App = () => {
             <RestaurantVolunteerPage/>
           </Route>
 
-          <Route exact path="/restaurant/tracker/:id">
-            <DonationTracker />
-          </Route>
+        <Route exact path="/restaurant/tracker/:id">
+          <Navbar />
+          <DonationTracker />
+        </Route>
 
-          <Route exact path="/login">
-            <Login/>
-          </Route>
-          <Route exact path="/signup">
-            <SignUpPageDetails/>
-          </Route>
-          <Route exact path="/signup/selection">
-            <SignUpPageSelection/>
-          </Route>
+        <Route exact path="/checkpoint">
+          <Navbar />
+          <Checkpoint />
+        </Route>
 
-          <Route exact path="/volunteer/tracker">
-            Volunteer Tracker (Parag)
-          </Route>
+        <Route exact path="/donation_request">
+          <Navbar />
+          <RestaurantDonationNearby />
+        </Route>
+        
+        <Route exact path="/login">
+          <Login/>
+        </Route>
+
+        <Route exact path="/signup">
+          <SignUpPageDetails/>
+        </Route>
+        
+        <Route exact path="/signup/selection">
+          <SignUpPageSelection/>
+        </Route>
+
+        <Route exact path="/volunteer/tracker">
+          <VolunteerTrack/>
+        </Route>
 
           <Route exact path="/checkpoints/">
             Checkpoints nearby

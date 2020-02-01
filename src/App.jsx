@@ -5,10 +5,14 @@ import client from './graphql/client';
 
 import { BrowserRouter, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
-import Home from './containers/home';
 import Login from './containers/Login/Login';
 import SignUpPageDetails from './containers/SignUp/SignUpPageDetails';
 import SignUpPageSelection from './containers/SignUp/SignUpPageSelection';
+import Home from './containers/localfeed';
+import RestaurantVolunteerPage from './containers/donation_info_page'
+import DonationRequest from './containers/request_form';
+import DonationTracker from './containers/request_track';
+
 
 /**
  * @type {React.FC}
@@ -28,9 +32,24 @@ const App = () => {
   return (
     <AppProviders>
       <main className="App">
-        <Route path="/">
+        <Route exact path="/">
+            <Navbar />
+            <Home />
+        </Route>
+
+        <Route exact path='/restaurant_volunteer/:id' >
+          <Navbar/>
+          <RestaurantVolunteerPage/>
+        </Route>
+
+        <Route exact path="/request">
           <Navbar />
-          <Home />
+          <DonationRequest />
+        </Route>
+
+        <Route exact path="/track">
+          <Navbar />
+          <DonationTracker />
         </Route>
         <Route exact path="/login"><Login/></Route>
         <Route exact path="/signup"><SignUpPageDetails/></Route>

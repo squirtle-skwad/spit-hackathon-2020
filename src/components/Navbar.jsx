@@ -4,8 +4,8 @@ import {
   NavbarBrand,
   Button,
 } from 'reactstrap';
-import { useLocalStorage } from 'react-use';
 import { Link } from 'react-router-dom';
+// import { useLocalStorage } from 'react-use';
 import { dummyUser } from '../helpers/auth';
 
 /**
@@ -13,18 +13,19 @@ import { dummyUser } from '../helpers/auth';
  */
 const CustomNavbar = () => {
   const user =  dummyUser;
+  const user = useLocalStorage("user");
 
   return (
     <Navbar color="primary" dark>
       {user.type.typeName === 'volunteer' && (
-        <Button tag={Link} to="/volunteer">Volunteer</Button>
+        <Button className="mr-auto" tag={Link} to="/volunteer">Volunteer</Button>
       )}
 
-      <NavbarBrand tag={Link} to="/" className="mx-auto">FoodFeed</NavbarBrand>
+      <NavbarBrand tag={Link} to="/">FoodFeed</NavbarBrand>
 
       {user.type.typeName === 'volunteer'
-        ? <Button tag={Link} to="/checkpoints">Checkpoints</Button>
-        : <Button tag={Link} to="/request">Donate</Button>
+        ? <Button className="ml-auto" tag={Link} to="/checkpoints">Checkpoints</Button>
+        : <Button className="ml-auto" tag={Link} to="/donation/request">Donate</Button>
       }
     </Navbar>
   );

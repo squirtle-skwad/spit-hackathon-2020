@@ -1,8 +1,8 @@
 import React from 'react';
-import { Button} from 'reactstrap';
+import { Button } from 'reactstrap';
 import { useHistory } from 'react-router-dom';
 
-import './RestaurantAlerts.css'
+import './RestaurantAlerts.css';
 
 const RestaurantAlerts = (props) => {
     const { distance, quantity } = props.details
@@ -15,7 +15,6 @@ const RestaurantAlerts = (props) => {
     return (
     <>
         <Button outline color="secondary" id="storyButton" className="rounded-circle text-center" onClick={redirectVolunteerFeed}>{distance}<br/>{quantity}</Button>
-    
     </>
     );
 }  

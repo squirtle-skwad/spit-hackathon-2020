@@ -1,7 +1,7 @@
 import React,{useState} from 'react';
 import {Card, CardText} from 'reactstrap'
 
-import Input from "../../components/Input/Input"
+import Input from "../../components/LidoInput/Input"
 const Login = (props) =>{
 
     const [email,setEmail] = useState("")

@@ -4,9 +4,9 @@ export const dummyUser = {
   "mobile_number": 9930780001,
   "name": "Vikrant Gajria",
   "type": {
-    "typeName": "volunteer"
+    "typeName": "restaunrant"
   }
 };
 
 export const setUserDetails = (user) => localStorage.setItem("user", JSON.stringify(user));
-export const getUserDetails = () => JSON.parse(localStorage.getItem("user")) || dummyUser;
+export const getUserDetails = () => dummyUser || JSON.parse(localStorage.getItem("user"));

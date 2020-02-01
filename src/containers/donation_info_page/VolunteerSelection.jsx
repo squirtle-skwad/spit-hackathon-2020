@@ -96,7 +96,7 @@ const VolunteerSelection = (props) => {
                                             donationRequestId: donationRequestId
                                         }
                                     }).then((resp) => {
-                                        routeHistory.push('tracker/'+donationRequestId)
+                                        routeHistory.push('/tracker/'+donationRequestId)
                                     })
                                 });
                             })
@@ -128,7 +128,7 @@ const VolunteerSelection = (props) => {
                                 donationRequestId: donationRequestId
                             }
                         }).then((resp) => {
-                            routeHistory.push('tracker/'+donationRequestId)
+                            routeHistory.push('/tracker/'+donationRequestId)
                         })
                     });
                 }

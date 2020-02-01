@@ -4,7 +4,6 @@ import { useMutation, useApolloClient } from 'react-apollo';
 import { useGeolocation } from 'react-use';
 import { useParams } from 'react-router-dom';
 import { UPDATE_DONATION_CHAIN, FIND_DONATION_VOLUNTEER_ID } from '../../graphql/queries/chain';
-import { STATE_MAP } from '../../helpers/mapper';
 import { getUserDetails } from '../../helpers/auth';
 
 /**

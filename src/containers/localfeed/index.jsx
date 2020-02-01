@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import ListFeedPost from "./ListFeedPost";
 import DeckRestaurantAlerts from "./DeckRestaurantAlerts";
 import DeckCheckpointAlerts from '../Checkpoint/DeckCheckpointAlerts'

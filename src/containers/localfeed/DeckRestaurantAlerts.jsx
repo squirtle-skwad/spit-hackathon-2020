@@ -19,10 +19,10 @@ const DeckRestaurantAlerts = () =>{
 
 
     const variables = {
-        minlatitude: state.latitude -  rad2degree(3/6415),
-        maxlatitude: state.latitude +  rad2degree(3/6415),
-        maxlongitude: state.latitude + rad2degree(3/6415),
-        minlongitude: state.latitude - rad2degree(3/6415),
+        // minlatitude: state.latitude -  rad2degree(3/6415),
+        // maxlatitude: state.latitude +  rad2degree(3/6415),
+        // maxlongitude: state.latitude + rad2degree(3/6415),
+        // minlongitude: state.latitude - rad2degree(3/6415),
         delivery_by_time:dateobjISO  // To check that the current time is less than the expiration time
     }
 
@@ -38,10 +38,10 @@ const DeckRestaurantAlerts = () =>{
                             }
                             
                             if(data){
-                                donation_alert = JSON.parse(JSON.stringify(data.donation_request)) 
-                                donation_alert.sort(function(left,right){
-                                    return (left.delivery_by_time).diff(date)
-                                });
+                                // donation_alert.push(...data.donation_request)
+                                // donation_alert.sort(function(left,right){
+                                //     return (left.delivery_by_time).diff(date)
+                                // });
                                 return (
                                     
                                     <>
@@ -50,7 +50,7 @@ const DeckRestaurantAlerts = () =>{
                                     <Row className="mx-auto">
                                         {
                                     
-                                            donation_alert.map((value)=>
+                                            data.donation_request.map((value)=>
                                                 <Col xs="auto"  style={{ margin:"1rem"}}>
                                                     <RestaurantAlerts distance={distance(value.latitude,value.longitude,state.latitude,state.longitude)}
                                                         quantity={value.quantity}/>

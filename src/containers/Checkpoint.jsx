@@ -16,10 +16,10 @@ const Checkpoint = () =>{
 
 
     const variable = {
-        minlatitude: state.latitude -  rad2degree(3/6415),
-        maxlatitude: state.latitude +  rad2degree(3/6415),
-        maxlongitude: state.latitude + rad2degree(3/6415),
-        minlongitude: state.latitude - rad2degree(3/6415),
+        // minlatitude: state.latitude -  rad2degree(3/6415),
+        // maxlatitude: state.latitude +  rad2degree(3/6415),
+        // maxlongitude: state.latitude + rad2degree(3/6415),
+        // minlongitude: state.latitude - rad2degree(3/6415),
         endtime : dateobjISO
     }
 

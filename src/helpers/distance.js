@@ -1,22 +1,30 @@
-import React from 'react'
+export const distance = (lat1, long1, lat2, long2) => 
+{
+    lat1 = (lat1 * 2.0 * Math.PI) / 60.0 / 360.0;      
+    long1 = (long1 * 2.0 * Math.PI) / 60.0 / 360.0;    
+    lat2 = (lat2 * 2.0 * Math.PI) / 60.0 / 360.0;   
+    long2 = (long2 * 2.0 * Math.PI) / 60.0 / 360.0;       
 
-export const distance = (lat1, lon1, lat2, lon2) => {
-    if ((lat1 == lat2) && (lon1 == lon2)) {
-        return 0;
-    }
-    else {
-        var radlat1 = Math.PI * lat1/180;
-        var radlat2 = Math.PI * lat2/180;
-        var theta = lon1-lon2;
-        var radtheta = Math.PI * theta/180;
-        var dist = Math.sin(radlat1) * Math.sin(radlat2) + Math.cos(radlat1) * Math.cos(radlat2) * Math.cos(radtheta);
-        if (dist > 1) {
-            dist = 1;
-        }
-        dist = Math.acos(dist);
-        dist = dist * 180/Math.PI;
-        dist = dist * 60 * 1.1515;
-        dist = dist * 1.609344 
-        return dist;
-    }
+
+    // use to different earth axis length    
+    var a = 6378137.0;        // Earth Major Axis (WGS84)    
+    var b = 6356752.3142;     // Minor Axis    
+    var f = (a-b) / a;        // "Flattening"    
+    var e = 2.0*f - f*f;      // "Eccentricity"      
+
+    var beta = (a / Math.sqrt( 1.0 - e * Math.sin( lat1 ) * Math.sin( lat1 )));    
+    var cos = Math.cos( lat1 );    
+    var x = beta * cos * Math.cos( long1 );    
+    var y = beta * cos * Math.sin( long1 );    
+    var z = beta * ( 1 - e ) * Math.sin( lat1 );      
+
+    beta = ( a / Math.sqrt( 1.0 -  e * Math.sin( lat2 ) * Math.sin( lat2 )));    
+    cos = Math.cos( lat2 );   
+    x -= (beta * cos * Math.cos( long2 ));    
+    y -= (beta * cos * Math.sin( long2 ));    
+    z -= (beta * (1 - e) * Math.sin( lat2 ));       
+
+    return Math.floor((Math.sqrt( (x*x) + (y*y) + (z*z) )/1000));  
 }
+
+// Converts numeric degrees to radians

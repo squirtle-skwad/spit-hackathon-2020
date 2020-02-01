@@ -7,7 +7,7 @@ import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import "./RestaurantAlerts.css";
 
 const RestaurantAlerts = (props) => {
-    const { lat, lng, placeName, distance, quantity } = props.details
+    const { lat, lng, placeName, distance, quantity } = props
     const routeHistory = useHistory()
     const redirectVolunteerFeed = (e) => {
         routeHistory.push('donation/2')
@@ -19,13 +19,13 @@ const RestaurantAlerts = (props) => {
 
     return (
         <>
-            <Button outline color="secondary" id="storyButton" className="rounded-circle text-center" onClick={toggle}>{distance}<br />{quantity}</Button>
+            <Button outline color="secondary" id="storyButton" className="rounded-circle text-center" onClick={toggle}>{distance}km<br />{quantity}kg</Button>
             <div>
                 <Modal centered isOpen={modal} toggle={toggle}>
                     <ModalHeader toggle={toggle}>{placeName}</ModalHeader>
                     <ModalBody>
                         <SimpleMap lat={lat} lng={lng} placeName={placeName} />
-                        <h4>Quantity: {quantity}</h4>
+                        <h4>Quantity: {quantity}kg</h4>
                         <h4>Slum Location: {quantity}</h4>
                         <CountDownClock expireTime={(Date.now() - 1580463085058) / 1000} />
                     </ModalBody>

@@ -12,10 +12,10 @@ import Home from './containers/localfeed';
 import RestaurantVolunteerPage from './containers/donation_info_page'
 import DonationRequest from './containers/request_form';
 import DonationTracker from './containers/request_track';
-import Checkpoint from './containers/Checkpoint';
+import Checkpoint from './containers/Checkpoint/Checkpoint';
 import RestaurantDonationNearby from './containers/Restaurant/RestaurantDonationNearby'
 import VolunteerTrack from './containers/volunteer_track/VolunteerTrack';
-
+import CheckpointCreate from './containers/Checkpoint/CheckpointCreate'
 
 /**
  * @type {React.FC}
@@ -85,6 +85,9 @@ const App = () => {
 
           <Route exact path="/checkpoints/">
             Checkpoints nearby
+          </Route>
+          <Route exact path="/create_checkpoint/">
+            <CheckpointCreate/>
           </Route>
         </Switch>
       </main>

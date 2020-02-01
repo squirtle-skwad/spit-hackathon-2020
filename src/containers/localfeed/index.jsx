@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import ListFeedPost from "./ListFeedPost";
 import DeckRestaurantAlerts from "./DeckRestaurantAlerts";
+import DeckCheckpointAlerts from '../Checkpoint/DeckCheckpointAlerts'
 import { Container } from "reactstrap";
 
 /**
@@ -8,28 +9,11 @@ import { Container } from "reactstrap";
  */
 
 const Home = () => {
-  function success(position) {
-    const latitude = position.coords.latitude;
-    const longitude = position.coords.longitude;
-    const accuracy = position.coords.accuracy;
-    console.log(latitude, longitude, accuracy);
-  }
-
-  function error() {
-    alert("Unable to retrieve your location");
-  }
-
-  useEffect(() => {
-    if (!navigator.geolocation) {
-      alert("Geolocation is not supported by your browser");
-    } else {
-      navigator.geolocation.getCurrentPosition(success, error);
-    }
-  }, []);
 
   return (
     <Container>
       <DeckRestaurantAlerts />
+      <DeckCheckpointAlerts/>
       <ListFeedPost />
     </Container>
   );

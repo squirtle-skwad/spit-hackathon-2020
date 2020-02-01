@@ -138,6 +138,7 @@ query donation_request($delivery_by_time:timestamptz!){
     slum_area {
       latitude
       longitude
+      name
     }
     quantity
     delivery_by_time

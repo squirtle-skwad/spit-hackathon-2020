@@ -5,6 +5,7 @@ import client from './graphql/client';
 
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Navbar from './components/Navbar';
+import NavbarLoginSignUp from './components/NavbarLoginSignUp';
 import Login from './containers/Login/Login';
 import SignUpPageDetails from './containers/SignUp/SignUpPageDetails';
 import SignUpPageSelection from './containers/SignUp/SignUpPageSelection';
@@ -39,8 +40,7 @@ const App = () => {
       <main className="App">
         <Switch>
 
-          <Route exact path="/">
-            <Navbar />
+          <Route exact path="/home">
             <Home />
           </Route>
 
@@ -69,7 +69,8 @@ const App = () => {
             <RestaurantDonationNearby />
           </Route>
 
-          <Route exact path="/login">
+          <Route exact path="/">
+            <NavbarLoginSignUp/>
             <Login />
           </Route>
 
@@ -83,10 +84,6 @@ const App = () => {
 
           <Route exact path="/volunteer/tracker">
             <VolunteerTrack />
-          </Route>
-
-          <Route exact path="/checkpoints/">
-            Checkpoints nearby
           </Route>
 
           <Route exact path="/leaderboard">

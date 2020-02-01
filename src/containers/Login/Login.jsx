@@ -42,7 +42,7 @@ const Login = props => {
           alert("Invalid Details");
         } else {
           setUserDetails(resp.data.user[0]);
-          routeHistory.push("/");
+          routeHistory.push("/home");
         }
       });
   };

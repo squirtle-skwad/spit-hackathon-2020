@@ -5,7 +5,7 @@ const AnyReactComponent = ({ text }) => (
     <div style={{
       color: 'white', 
       background: 'grey',
-      padding: '15px 10px',
+      padding: '5px 2px',
       display: 'inline-flex',
       textAlign: 'center',
       alignItems: 'center',
@@ -19,15 +19,26 @@ const AnyReactComponent = ({ text }) => (
 
 const SimpleMap = (props) => {
 
-    const lat = 59.33
-    const lng = 30.33
-    const placeName = 'The J'
-    const zoom = 15
+    const { lat, lng, placeName } = props
+    const zoom = 14
+    const createMapOptions= function (maps) {
+        return {
+          zoomControl: false,
+          mapTypeControl: false,
+          scaleControl: false,
+          streetViewControl: false,
+          rotateControl: false,
+          fullscreenControl: false
+        }
+      }
     
     return (
-        <div style={{width: '100%', height: '30rem', marginBottom:"2rem"}}>        
+
+        <div style={{width: '100%', height: '7rem'}}>        
             <GoogleMapReact
+                bootstrapURLKeys={{ key:"AIzaSyCKw9OC2Zpsiuan-b32S7hKcETAUMY4cIQ", language: 'en'}}
                 defaultCenter={{lat:lat, lng:lng}}
+                options={createMapOptions}
                 defaultZoom={zoom}
             >
                 <AnyReactComponent 

@@ -15,10 +15,10 @@ import DonationRequest from './containers/request_form';
 import DonationTracker from './containers/request_track';
 import Checkpoint from './containers/Checkpoint/Checkpoint';
 import RestaurantDonationNearby from './containers/Restaurant/RestaurantDonationNearby'
-import VolunteerTrack from './containers/volunteer_track/VolunteerTrack';
 import LeaderBoard from './containers/leader_board/LeaderBoard'
 
 import CheckpointCreate from './containers/Checkpoint/CheckpointCreate'
+import SlumRequest from './containers/slum_request/SlumRequest';
 
 /**
  * @type {React.FC}
@@ -82,10 +82,6 @@ const App = () => {
             <SignUpPageSelection />
           </Route>
 
-          <Route exact path="/volunteer/tracker">
-            <VolunteerTrack />
-          </Route>
-
           <Route exact path="/leaderboard">
             <Navbar />
             <LeaderBoard />
@@ -93,6 +89,11 @@ const App = () => {
 
           <Route exact path="/create_checkpoint/">
             <CheckpointCreate />
+          </Route>
+
+          <Route exact path="/slum_request">
+            <Navbar />
+            <SlumRequest />
           </Route>
         </Switch>
       </main>

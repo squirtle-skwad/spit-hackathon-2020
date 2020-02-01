@@ -3,7 +3,7 @@ import React from 'react';
 import { ApolloProvider } from 'react-apollo';
 import client from './graphql/client';
 
-import { BrowserRouter, Route } from 'react-router-dom';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Login from './containers/Login/Login';
 import SignUpPageDetails from './containers/SignUp/SignUpPageDetails';
@@ -35,29 +35,33 @@ const App = () => {
   return (
     <AppProviders>
       <main className="App">
-        <Route exact path="/">
+        <Switch>
+
+          <Route exact path="/">
+              <Navbar />
+              <Home />
+          </Route>
+
+          <Route exact path="/donation/request">
             <Navbar />
-            <Home />
-        </Route>
+            <DonationRequest />
+          </Route>
 
-        <Route exact path='/donation/:id' >
-          <Navbar/>
-          <RestaurantVolunteerPage/>
-        </Route>
+          <Route exact path='/donation/:id' >
+            <Navbar/>
+            <RestaurantVolunteerPage/>
+          </Route>
 
-        <Route exact path="/donation/request">
-          <Navbar />
-          <DonationRequest />
-        </Route>
-
-        <Route exact path="/restaurant/tracker">
+        <Route exact path="/restaurant/tracker/:id">
           <Navbar />
           <DonationTracker />
         </Route>
+
         <Route exact path="/checkpoint">
           <Navbar />
           <Checkpoint />
         </Route>
+
         <Route exact path="/donation_request">
           <Navbar />
           <RestaurantDonationNearby />
@@ -66,10 +70,11 @@ const App = () => {
         <Route exact path="/login">
           <Login/>
         </Route>
+
         <Route exact path="/signup">
-          
           <SignUpPageDetails/>
         </Route>
+        
         <Route exact path="/signup/selection">
           <SignUpPageSelection/>
         </Route>
@@ -78,9 +83,10 @@ const App = () => {
           <VolunteerTrack/>
         </Route>
 
-        <Route exact path="/checkpoints/">
-          Checkpoints nearby
-        </Route>
+          <Route exact path="/checkpoints/">
+            Checkpoints nearby
+          </Route>
+        </Switch>
       </main>
     </AppProviders>
   );

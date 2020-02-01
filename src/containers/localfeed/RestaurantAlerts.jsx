@@ -4,7 +4,7 @@ import SimpleMap from "./TestGoogleMap";
 import CountDownClock from "./CountDownClock";
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 
-import './RestaurantAlerts.css'
+import "./RestaurantAlerts.css";
 
 const RestaurantAlerts = (props) => {
     const { lat, lng, placeName, distance, quantity } = props.details

@@ -1,4 +1,5 @@
 import gql from 'graphql-tag';
+export * from './chain';
 
 export const CREATE_USER = gql`
 mutation signUp($name: String!, $email: String!, $password: String!, $phone: bigint!) {

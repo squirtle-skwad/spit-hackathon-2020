@@ -1,55 +1,67 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   Form,
   Input,
   Label,
   Button,
 } from 'reactstrap';
+import SlumSelector from './SlumSelector';
 import { useGeolocation } from 'react-use';
 import { useHistory } from 'react-router-dom';
 import { useInput } from '../../helpers/hooks';
+import { useMutation } from 'react-apollo';
+import { REQUEST_DONATION } from '../../graphql/queries';
+import { getUserDetails } from '../../helpers/auth';
 
 /**
  * @type {React.FC}
  */
 const DonationRequest = () => {
+  const [insertDonationRequest] = useMutation(REQUEST_DONATION);
   const location = useGeolocation();
   const routeHistory = useHistory();
 
-  const slumInput = useInput();
   const quantityInput = useInput();
-  const deliverByInput = useInput();
+  const deliverByInput = useInput(new Date().toISOString());
+  const [slum, setSlum] = useState();
 
   const fileRequest = (e) => {
     e.preventDefault();
 
     const variables = {
-      donor_id: 1,
-      slum_id: slumInput.value,
+      donor_id: getUserDetails().id,
+      slum_id: slum.id,
       quantity: quantityInput.value,
       delivery_by_time: deliverByInput.value,
       accuracy: location.accuracy,
       latitude: location.latitude,
       longitude: location.longitude,
     };
-    
-    alert("Request made!" + JSON.stringify(variables));
 
-    routeHistory.push("/track");
+    insertDonationRequest({
+      variables,
+    })
+      .then(({ data }) => {
+        routeHistory.push(`/restaurant/tracker/${data.insert_donation_request.returning[0].id}`);
+      })
+      .catch(e => {
+        console.error(e);
+        alert(JSON.stringify(e));
+      });
   };
 
   return (
-    <Form onSubmit={fileRequest}>
-      <Label>Slum ID</Label>
-      <Input {...slumInput} type="select" />
-
+    <Form onSubmit={fileRequest} className="p-2">
       <Label>Quantitiy (kgs)</Label>
-      <Input {...quantityInput} />
+      <Input onChange={quantityInput.onChange} value={quantityInput.value} type="number" />
 
       <Label>Expiry time</Label>
-      <Input {...deliverByInput} type="datetime" />
+      <Input onChange={deliverByInput.onChange} value={deliverByInput.value} />
 
-      <Button type="submit">Submit</Button>
+      <SlumSelector onChange={setSlum} value={slum} />
+
+      <Button type="submit" block className="my-1">Submit</Button>
+      {location.latitude} {location.longitude}
     </Form>
   );
 };

@@ -1,6 +1,6 @@
 import React,{useState} from 'react';
 import {Card, CardText, Button } from 'reactstrap'
-import Input from "../../components/Input/Input"
+import Input from "../../components/LidoInput/Input"
 import LoadingPopup from '../../components/Loader/LoadingPopup'
 import { Mutation } from 'react-apollo';
 import * as queries from '../../graphql/queries/index'

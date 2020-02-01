@@ -82,10 +82,6 @@ const App = () => {
           </Route>
 
 
-          <Route exact path="/checkpoints/">
-            Checkpoints nearby
-          </Route>
-
           <Route exact path="/leaderboard">
             <Navbar />
             <LeaderBoard />

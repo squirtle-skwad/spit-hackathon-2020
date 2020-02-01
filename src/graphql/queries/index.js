@@ -23,6 +23,8 @@ query checkpoint_list($endtime:timestamptz!){
   checkpoint(where: {end_time: {_gte: $endtime}}) {
     start_time
     end_time
+    latitude
+    longitude
   }
 }`
 

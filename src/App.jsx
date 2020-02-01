@@ -37,23 +37,38 @@ const App = () => {
             <Home />
         </Route>
 
-        <Route exact path='/restaurant_volunteer/:id' >
+        <Route exact path='/donation/:id' >
           <Navbar/>
           <RestaurantVolunteerPage/>
         </Route>
 
-        <Route exact path="/request">
+        <Route exact path="/donation/request">
           <Navbar />
           <DonationRequest />
         </Route>
 
-        <Route exact path="/track">
+        <Route exact path="/restaurant/tracker">
           <Navbar />
           <DonationTracker />
         </Route>
-        <Route exact path="/login"><Login/></Route>
-        <Route exact path="/signup"><SignUpPageDetails/></Route>
-        <Route exact path="/signup2"><SignUpPageSelection/></Route>
+
+        <Route exact path="/login">
+          <Login/>
+        </Route>
+        <Route exact path="/signup">
+          <SignUpPageDetails/>
+        </Route>
+        <Route exact path="/signup/selection">
+          <SignUpPageSelection/>
+        </Route>
+
+        <Route exact path="/volunteer/tracker">
+          Volunteer Tracker (Parag)
+        </Route>
+
+        <Route exact path="/checkpoints/">
+          Checkpoints nearby
+        </Route>
       </main>
     </AppProviders>
   );

@@ -36,7 +36,7 @@ const SignUpPageDetails = (props) =>{
                 resp =>{
                     console.log(resp)
                     setLoading(false)
-                    history.push('signup2')
+                    history.push('signup/selection')
                 }
             )   
         }
@@ -52,7 +52,7 @@ const SignUpPageDetails = (props) =>{
                 <Input type = 'password' placeholder={'Password'} label={'Password '} valid={true} value = {password} onChange={(curr) => {setPassword(curr)}}/>
                 <Input type = 'password' placeholder={'Password Again'} label={'Confirm Password '} valid={true} value = {password2} onChange={(curr) => {setPassword2(curr)}}/>
                 {password===password2 || password2===""? null: <h6 style={{color:"red"}}>Password does not match</h6>}
-                {/* <Button type="submit"  onClick={()=>history.push('signup2')}>Submit</Button> */}
+                {/* <Button type="submit"  onClick={()=>history.push('signup/selection')}>Submit</Button> */}
                 <Mutation mutation={queries.CREATE_USER} >
                 {
                     (postMutation,{loading,error}) => {

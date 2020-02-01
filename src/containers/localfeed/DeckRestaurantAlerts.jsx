@@ -1,5 +1,5 @@
 import React from 'react'
-import { Query } from 'react-apollo';
+import { Query, useApolloClient } from 'react-apollo';
 import { Row, Col, ListGroup, ListGroupItem, Spinner } from 'reactstrap'
 import { useGeolocation } from 'react-use';
 import * as queries from '../../graphql/queries/index'
@@ -11,6 +11,7 @@ const DeckRestaurantAlerts = () =>{
     const state = useGeolocation();
     var dateobj = new Date();
     var dateobjISO = dateobj.toISOString();
+    const client = useApolloClient()
     
     const rad2degree = (value) =>{
         return value *  180 / Math.PI 

@@ -1,4 +1,3 @@
-import { useState } from "react";
 
 export const dummyUser = {
   "id": "ff1f1ec2-2454-44c0-a19b-d2629d0de69f",

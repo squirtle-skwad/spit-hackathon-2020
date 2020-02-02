@@ -40,7 +40,7 @@ const CustomNavbar = () => {
             <MapPin />
           </Link>
         ) : (
-          <Button tag={Link} to="/donate/request">
+          <Button tag={Link} to="/donation/request">
             <Gift />
           </Button>
         )}

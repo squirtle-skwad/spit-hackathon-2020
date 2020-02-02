@@ -33,7 +33,7 @@ const SlumRequest = (props) => {
     });
     alert("Thank you for the suggestion!");
 
-    history.puch("/");
+    history.push("/");
   }
 
   return (
@@ -52,7 +52,7 @@ const SlumRequest = (props) => {
           </FormGroup>
           <ImageCustom radius={"0%"} value={image} getValue={(val) => setImage(val)} />
           <div className="d-flex justify-content-center align-items-center" style={{marginTop:"2rem"}}>
-            <Button type="submit">Submit</Button>  
+            <Button type="submit">Submit</Button>
           </div>
         </Form>
       </Container>

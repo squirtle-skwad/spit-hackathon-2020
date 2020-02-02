@@ -89,6 +89,7 @@ const App = () => {
           </Route>
 
           <Route exact path="/create_checkpoint/">
+            <Navbar />
             <CheckpointCreate />
           </Route>
 

@@ -2,14 +2,11 @@ import React, { useState, useEffect } from "react";
 import GoogleMapReact from "google-map-react";
 import { useGeolocation } from 'react-use';
 import Marker from '../assets/marker.svg';
+import UserCircle from '../assets/user.svg';
 
-const SelectionMarker = () => {
-  return (
-    <div>
-      <img src={Marker} width={32} height={32} alt="hmm fuck" />
-    </div>
-  );
-};
+const SelectionMarker = () => <img src={Marker} width={32} height={32} alt="hmm fuck" />;
+
+const UserMarker = () => <img src={UserCircle} width={32} height={32} alt="geralt" />;
 
 /**
  * @type {React.FC}
@@ -50,6 +47,7 @@ const SelectorMap = ({ onChange, value }) => {
           }
         }}
       >
+        <UserMarker lat={location.latitude} lng={location.longitude} />
         {selectedLat && selectedLng && <SelectionMarker lat={selectedLat} lng={selectedLng} />}
       </GoogleMapReact>
     </div>

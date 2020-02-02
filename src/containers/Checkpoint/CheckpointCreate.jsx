@@ -10,12 +10,12 @@ import {
   Label,
   Button
 } from "reactstrap";
-import { useGeolocation } from "react-use";
-import { getUserDetails, setUserDetails } from "../../helpers/auth";
-import LoadingPopup from "../../components/Loader/LoadingPopup";
 import { Mutation } from "react-apollo";
-import * as queries from "../../graphql/queries/index";
 import { useHistory } from "react-router-dom";
+import SelectorMap from '../../components/SelectorMap';
+import { getUserDetails } from "../../helpers/auth";
+import * as queries from "../../graphql/queries/index";
+import LoadingPopup from "../../components/Loader/LoadingPopup";
 
 const CheckpointCreate = () => {
   const [startTime, setStartTime] = useState("");
@@ -23,8 +23,8 @@ const CheckpointCreate = () => {
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
   const user = getUserDetails();
-  const state = useGeolocation();
   const history = useHistory();
+  const [loc, setLoc] = useState({});
 
   const createCheckpoint = postMutation => {
     const start_time = new Date(startDate + "T" + startTime + ":00");
@@ -32,9 +32,9 @@ const CheckpointCreate = () => {
     const variables = {
       start_time: start_time.toISOString(),
       end_time: end_time.toISOString(),
-      latitude: state.latitude,
-      longitude: state.longitude,
-      accuracy: state.accuracy,
+      latitude: loc.lat,
+      longitude: loc.lng,
+      accuracy: 1,
       user_id: user.id
     };
     postMutation({ variables }).then(resp => {
@@ -55,6 +55,10 @@ const CheckpointCreate = () => {
       >
         <CardText>
           <Form>
+            <Row>
+              <SelectorMap onChange={setLoc} />
+              {loc.lat} {loc.lng}
+            </Row>
             <Row form>
               <Col md={6}>
                 <FormGroup>

@@ -16,8 +16,7 @@ import loving from '../../assets/images/loving.png'
 const VolunteerSelection = (props) => {
     let { donationRequestId } = useParams()
     let user = getUserDetails()
-    const cardStyle = { margin: "2rem", color: "#ff9500" }
-    const cardStyleActive = { margin: "2rem", border: "2px solid green" }
+    const cardStyleActive = { margin: "2rem", }
     const [volunteer, setVolunteer] = useState(null);
     const [startTime, setStartTime] = useState();
     const [endTime, setEndTime] = useState();
@@ -150,13 +149,13 @@ const VolunteerSelection = (props) => {
         <>
             {(role === 1) ?
                 <>
-                    <Card style={{ margin: "2rem", background: "#241501" }} className="shadow" body inverse >
+                    <Card style={{ margin: "2rem", background: "#241501", border: "2px solid green" }} className="shadow" body inverse >
                         <Row>
                             <Col sm="2">
                                 <CardImg src={loving} style={{ width: "6rem", height: "6rem", marginLeft: "2rem" }} />
                             </Col>
                             <Col sm="10">
-                                <CardTitle>Volunteer As A Picker And Distributer</CardTitle>
+                                <CardTitle>Volunteer As A Distributer</CardTitle>
                                 <Button color="primary" onClick={() => updateRole(1)}>Volunteer</Button>
 
                             </Col>
@@ -180,27 +179,71 @@ const VolunteerSelection = (props) => {
             }
             {(role === 2) ?
                 <>
-                    <Card style={cardStyleActive} className="shadow" body inverse color="warning">
-                        <CardTitle>Volunteer As A Transporter</CardTitle>
-                        <Button color="secondary" onClick={() => updateRole(2)}>Volunteer</Button>
+                    <Card style={{ margin: "2rem", border: "2px solid green" }} className="shadow" body inverse >
+                        <Row>
+                            <Col sm="2">
+                                <CardImg src={gps} style={{ width: "6rem", height: "6rem", marginLeft: "2rem" }} />
+                            </Col>
+                            <Col sm="10">
+                                <CardTitle>Volunteer As A Transporter</CardTitle>
+                                <Button color="primary" onClick={() => updateRole(2)}>Volunteer</Button>
+
+                            </Col>
+                        </Row>
                     </Card>
                     <VolunteerSelector onChange={setVolunteer} onStartTime={setStartTime} onEndTime={setEndTime} value={volunteer} role={"distributor"} donationRequestId={donationRequestId} />
                 </>
                 :
-                <Card style={cardStyle} className="shadow" body inverse color="warning">
-                    <CardTitle>Volunteer As A Transporter</CardTitle>
-                    <Button color="secondary" onClick={() => updateRole(2)}>Volunteer</Button>
+                <Card style={{ margin: "2rem" }} className="shadow" body  >
+                    <Row>
+                        <Col sm="2">
+                            <CardImg src={gps} style={{ width: "6rem", height: "6rem", marginLeft: "2rem" }} />
+                        </Col>
+                        <Col sm="10">
+                            <CardTitle>Volunteer As A Transporter</CardTitle>
+                            <Button color="primary" onClick={() => updateRole(2)}>Volunteer</Button>
+
+                        </Col>
+                    </Row>
                 </Card>
             }
             {(role === 3) ?
-                <Card style={cardStyleActive} className="shadow" body inverse color="primary">
-                    <CardTitle>Volunteer As Both</CardTitle>
-                    <Button color="secondary" onClick={() => updateRole(3)}>Volunteer</Button>
+                <Card style={{ margin: "2rem", border:"2px solid green", background:"#400404" }} inverse className="shadow" body  >
+                    <Row>
+                        <Col sm="2">
+                            <CardImg src={loving} style={{ width: "6rem", height: "6rem", marginLeft: "2rem" }} />
+                        </Col>
+                        <Col sm="8">
+                            <div className="d-flex justify-content-center align-items-center">
+                                <CardTitle>Volunteer As Both</CardTitle>
+                            </div>
+                            <div className="d-flex justify-content-center align-items-center">
+                                <Button color="primary" className="mx-auto" onClick={() => updateRole(3)}>Volunteer</Button>
+                            </div>
+                        </Col>
+                        <Col sm="2">
+                            <CardImg src={gps} style={{ width: "6rem", height: "6rem", marginLeft: "2rem" }} />
+                        </Col>
+                    </Row>
                 </Card>
                 :
-                <Card style={cardStyle} className="shadow" body inverse color="primary">
-                    <CardTitle>Volunteer As Both</CardTitle>
-                    <Button color="secondary" onClick={() => updateRole(3)}>Volunteer</Button>
+                <Card style={{ margin: "2rem", background:"#400404" }} className="shadow" body inverse  >
+                    <Row>
+                        <Col sm="2">
+                            <CardImg src={loving} style={{ width: "6rem", height: "6rem", marginLeft: "2rem" }} />
+                        </Col>
+                        <Col sm="8">
+                            <div className="d-flex justify-content-center align-items-center">
+                                <CardTitle>Volunteer As Both</CardTitle>
+                            </div>
+                            <div className="d-flex justify-content-center align-items-center">
+                                <Button color="primary" className="mx-auto" onClick={() => updateRole(3)}>Volunteer</Button>
+                            </div>
+                        </Col>
+                        <Col sm="2">
+                            <CardImg src={gps} style={{ width: "6rem", height: "6rem", marginLeft: "2rem" }} />
+                        </Col>
+                    </Row>
                 </Card>
             }
             <Container>

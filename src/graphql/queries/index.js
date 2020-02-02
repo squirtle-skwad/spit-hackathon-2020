@@ -172,3 +172,11 @@ mutation ($accuracy:float8!, $latitude:float8!, $longitude:float8!, $end_time:ti
   }
 }
 `
+
+export const REQUEST_SLUM = gql`
+mutation REQUEST_SLUM ($lat: float8!, $lgn: float8!, $number_of_people: Int!, $name: String!, $picture: String) {
+  insert_slum_areas(objects: {latitude: $lat, longitude: $lgn, accuracy: 1, number_of_people: $number_of_people, name: $name, picture: $picture}) {
+    affected_rows
+  }
+}
+`;

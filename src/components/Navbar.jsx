@@ -9,7 +9,7 @@ import {
   Dropdown,
 } from 'reactstrap';
 
-import { Link, Redirect } from 'react-router-dom';
+import { Link, Redirect, useHistory } from 'react-router-dom';
 import { getUserDetails } from '../helpers/auth';
 import NavbarLoginSignUp from './NavbarLoginSignUp'
 /**
@@ -17,13 +17,12 @@ import NavbarLoginSignUp from './NavbarLoginSignUp'
  */
 const CustomNavbar = () => {
   const user = getUserDetails();
-
-  if (user === null){
-    return <Redirect to='/'/>
-  }
-  else{
+  const history = useHistory()
+  console.log(user)
+ 
     return(
-
+      (user !== null)
+      ?(
       <Navbar color="primary" dark>
       {user.type.typeName === 'volunteer' ? (
         <Button className="mr-auto" tag={Link} to="/create_checkpoint">Volunteer</Button>
@@ -43,11 +42,17 @@ const CustomNavbar = () => {
           </Dropdown>)
         : null
       }
-      <Button className="ml-auto" tag={Link} to="/logout">LogOut</Button>
+      <Button className="ml-auto" tag={Link} onClick={()=>{
+        localStorage.clear()
+        history.push('/')
+      }}>LogOut</Button>
       <Button className="ml-auto" tage={Link} to="/profile">Profile</Button>
-    </Navbar>
-    ); 
-  }
+    </Navbar>)
+    :
+    <Redirect to="/"/>
+    
+  ); 
+  
 };
 
 export default CustomNavbar;

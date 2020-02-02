@@ -10,7 +10,7 @@ const ListFeedPost = props => {
   
   return (
     <CardColumns>
-      <Query query={queries.GET_POST}>
+      <Query query={queries.GET_POST} pollInterval="1000">
         {
           ({ data, loading, error }) => {
             if (loading) {

@@ -1,28 +1,35 @@
-export const distance = (lat1, long1, lat2, long2) => {
-  lat1 = (lat1 * 2.0 * Math.PI) / 60.0 / 360.0;
-  long1 = (long1 * 2.0 * Math.PI) / 60.0 / 360.0;
-  lat2 = (lat2 * 2.0 * Math.PI) / 60.0 / 360.0;
-  long2 = (long2 * 2.0 * Math.PI) / 60.0 / 360.0;
 
-  // use to different earth axis length
-  var a = 6378137.0; // Earth Major Axis (WGS84)
-  var b = 6356752.3142; // Minor Axis
-  var f = (a - b) / a; // "Flattening"
-  var e = 2.0 * f - f * f; // "Eccentricity"
+function Deg2Rad( deg ) {
+  return deg * Math.PI / 180;
+}
 
-  var beta = a / Math.sqrt(1.0 - e * Math.sin(lat1) * Math.sin(lat1));
-  var cos = Math.cos(lat1);
-  var x = beta * cos * Math.cos(long1);
-  var y = beta * cos * Math.sin(long1);
-  var z = beta * (1 - e) * Math.sin(lat1);
+export const distance = (lat1,lon1,lat2,lon2) =>
+{       
+   //Toronto Latitude  43.74 and longitude  -79.37
+   //Vancouver Latitude  49.25 and longitude  -123.12
+   lat1 = Deg2Rad(43.74); 
+   lat2 = Deg2Rad(49.25); 
+   lon1 = Deg2Rad(-79.37); 
+   lon2 = Deg2Rad(-123.12);
+   var latDiff = lat2-lat1;
+   var lonDiff = lon2-lon1;
+   var R = 6371000; // metres
+   var φ1 = lat1;
+   var φ2 = lat2;
+   var Δφ = latDiff;
+   var Δλ = lonDiff;
 
-  beta = a / Math.sqrt(1.0 - e * Math.sin(lat2) * Math.sin(lat2));
-  cos = Math.cos(lat2);
-  x -= beta * cos * Math.cos(long2);
-  y -= beta * cos * Math.sin(long2);
-  z -= beta * (1 - e) * Math.sin(lat2);
+   var a = Math.sin(Δφ/2) * Math.sin(Δφ/2) +
+           Math.cos(φ1) * Math.cos(φ2) *
+           Math.sin(Δλ/2) * Math.sin(Δλ/2);
+   var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
 
-  return Math.floor(Math.sqrt(x * x + y * y + z * z) / 1000);
-};
+   var d = R * c;
+  //  alert('d: ' + d);
+
+   var dist = Math.acos( Math.sin(φ1)*Math.sin(φ2) + Math.cos(φ1)*Math.cos(φ2) * Math.cos(Δλ) );
+   var stringdist = String(dist)
+   return stringdist.slice(0,4)
+}       
 
 // Converts numeric degrees to radians

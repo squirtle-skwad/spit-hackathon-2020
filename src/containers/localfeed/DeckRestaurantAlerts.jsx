@@ -45,6 +45,7 @@ const DeckRestaurantAlerts = () => {
                         lng={value.longitude}
                         placeName={value.donor.name}
                         donationRequestId={value.id}
+                        slum={value.slum_area.name}
                       />
                     </Col>
                   ))}

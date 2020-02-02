@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom';
 const NavbarLoginSignUp = () =>{
     return(
         <Navbar color="primary" dark>
-            <NavbarBrand tag={Link} to="/home">FoodFeed</NavbarBrand>
+            <NavbarBrand tag={Link} to="/">FoodFeed</NavbarBrand>
                 <Button href="/signup">SignUp</Button>
         </Navbar>
     )

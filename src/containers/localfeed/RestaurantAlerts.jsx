@@ -26,55 +26,33 @@ const RestaurantAlerts = props => {
 
   const toggle = () => setModal(!modal);
 
-  return (
-    <>
-      <Button
-        outline
-        color="secondary"
-        id="storyButton"
-        className="rounded-circle text-center"
-        onClick={toggle}
-      >
-        {distance}km
-        <br />
-        {quantity}kg
-      </Button>
-      <div>
-        <Modal centered isOpen={modal} toggle={toggle}>
-          <ModalHeader
-            toggle={toggle}
-            cssModule={{ "modal-title": "w-100 text-center" }}
-          >
-            {placeName}
-          </ModalHeader>
-          <ModalBody>
-            <SimpleMap lat={lat} lng={lng} placeName={placeName} />
-            <h4>
-              <Badge color="secondary" light style={{ marginRight: "1rem" }}>
-                Quantity
-              </Badge>{" "}
-              {quantity}kg
-            </h4>
-            <h4>
-              <Badge color="primary" dark style={{ marginRight: "1rem" }}>
-                Slum
-              </Badge>
-              {slum}
-            </h4>
-            <CountDownClock expireTime={(deliverTime - Date.now()) / 1000} />
-          </ModalBody>
-          <ModalFooter>
-            <Button color="primary" onClick={() => redirectVolunteerFeed()}>
-              Volunteer
-            </Button>{" "}
-            <Button color="secondary" onClick={toggle}>
-              Cancel
-            </Button>
-          </ModalFooter>
-        </Modal>
-      </div>
-    </>
-  );
-};
+    // const expireTime = (deliverTime) => {
+    //     if(deliverTime > Date.now()){
+    //         return deliverTime-Date.now()
+    //     }
+    //     return Date.now()-deliverTime
+    // }
+
+    return (
+        <>
+            <Button outline color="secondary" id="storyButton" className="rounded-circle text-center" onClick={toggle}>{distance}km<br />{quantity}kg</Button>
+            <div>
+                <Modal centered isOpen={modal} toggle={toggle}>
+                    <ModalHeader toggle={toggle} cssModule={{'modal-title': 'w-100 text-center'}}>{placeName}</ModalHeader>
+                    <ModalBody>
+                        <SimpleMap lat={lat} lng={lng} placeName={placeName} />
+                        <h4><Badge color="secondary" light style={{marginRight:"1rem"}}>Quantity</Badge> {quantity}kg</h4>
+                        <h4><Badge color="primary" dark style={{marginRight:"1rem"}}>Slum</Badge>{slum}</h4>
+                        {/* <CountDownClock expireTime={(deliverTime-Date.now()) / 1000} /> */}
+                    </ModalBody>
+                    <ModalFooter>
+                        <Button color="primary" onClick={()=>redirectVolunteerFeed()}>Volunteer</Button>{' '}
+                        <Button color="secondary" onClick={toggle}>Cancel</Button>
+                    </ModalFooter>
+                </Modal>
+            </div>
+        </>
+    );
+}
 
 export default RestaurantAlerts;

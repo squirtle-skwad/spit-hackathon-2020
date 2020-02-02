@@ -20,11 +20,11 @@ import { useParams, useHistory } from "react-router-dom";
 import { getUserDetails } from "../../helpers/auth";
 import { useGeolocation } from "react-use";
 import loving from "../../assets/images/loving.png";
+import gps from "../../assets/images/gps.png";
 
 const VolunteerSelection = (props) => {
     let { donationRequestId } = useParams()
     let user = getUserDetails()
-    const cardStyleActive = { margin: "2rem", }
     const [volunteer, setVolunteer] = useState(null);
     const [startTime, setStartTime] = useState();
     const [endTime, setEndTime] = useState();
@@ -159,10 +159,9 @@ const VolunteerSelection = (props) => {
   };
   return (
     <>
-      {role === 1 ? (
-        <>
+
             {(role === 1) ?
-                <>
+                (<>
                     <Card style={{ margin: "2rem", background: "#241501", border: "2px solid green" }} className="shadow" body inverse >
                         <Row>
                             <Col sm="2">
@@ -176,9 +175,9 @@ const VolunteerSelection = (props) => {
                         </Row>
                     </Card>
                     <VolunteerSelector onChange={setVolunteer} onStartTime={setStartTime} onEndTime={setEndTime} value={volunteer} role={"transporter"} donationRequestId={donationRequestId} />
-                </>
+                </>)
                 :
-                <Card style={{ margin: "2rem", background: "#241501" }} className="shadow" body inverse >
+                (<Card style={{ margin: "2rem", background: "#241501" }} className="shadow" body inverse >
                     <Row>
                         <Col sm="2">
                             <CardImg src={loving} style={{ width: "6rem", height: "6rem", marginLeft: "2rem" }} />
@@ -189,7 +188,7 @@ const VolunteerSelection = (props) => {
 
                         </Col>
                     </Row>
-                </Card>
+                </Card>)
             }
             {(role === 2) ?
                 <>
@@ -208,7 +207,7 @@ const VolunteerSelection = (props) => {
                     <VolunteerSelector onChange={setVolunteer} onStartTime={setStartTime} onEndTime={setEndTime} value={volunteer} role={"distributor"} donationRequestId={donationRequestId} />
                 </>
                 :
-                <Card style={{ margin: "2rem" }} className="shadow" body  >
+                (<Card style={{ margin: "2rem" }} className="shadow" body  >
                     <Row>
                         <Col sm="2">
                             <CardImg src={gps} style={{ width: "6rem", height: "6rem", marginLeft: "2rem" }} />
@@ -219,10 +218,10 @@ const VolunteerSelection = (props) => {
 
                         </Col>
                     </Row>
-                </Card>
+                </Card>)
             }
             {(role === 3) ?
-                <Card style={{ margin: "2rem", border:"2px solid green", background:"#400404" }} inverse className="shadow" body  >
+                (<Card style={{ margin: "2rem", border:"2px solid green", background:"#400404" }} inverse className="shadow" body  >
                     <Row>
                         <Col sm="2">
                             <CardImg src={loving} style={{ width: "6rem", height: "6rem", marginLeft: "2rem" }} />
@@ -239,9 +238,9 @@ const VolunteerSelection = (props) => {
                             <CardImg src={gps} style={{ width: "6rem", height: "6rem", marginLeft: "2rem" }} />
                         </Col>
                     </Row>
-                </Card>
+                </Card>)
                 :
-                <Card style={{ margin: "2rem", background:"#400404" }} className="shadow" body inverse  >
+                (<Card style={{ margin: "2rem", background:"#400404" }} className="shadow" body inverse  >
                     <Row>
                         <Col sm="2">
                             <CardImg src={loving} style={{ width: "6rem", height: "6rem", marginLeft: "2rem" }} />
@@ -258,8 +257,8 @@ const VolunteerSelection = (props) => {
                             <CardImg src={gps} style={{ width: "6rem", height: "6rem", marginLeft: "2rem" }} />
                         </Col>
                     </Row>
-                </Card>
-            }
+                </Card>)
+            } 
             <Container>
                 <Form>
                     <Row form>
@@ -296,88 +295,7 @@ const VolunteerSelection = (props) => {
                 </Form>
             </Container>
         </>
-      ) : (
-        <Card style={cardStyle} className="shadow" body inverse color="warning">
-          <CardTitle>Volunteer As A Transporter</CardTitle>
-          <Button color="secondary" onClick={() => updateRole(2)}>
-            Volunteer
-          </Button>
-        </Card>
-      )}
-      {role === 3 ? (
-        <Card
-          style={cardStyleActive}
-          className="shadow"
-          body
-          inverse
-          color="primary"
-        >
-          <CardTitle>Volunteer As Both</CardTitle>
-          <Button color="secondary" onClick={() => updateRole(3)}>
-            Volunteer
-          </Button>
-        </Card>
-      ) : (
-        <Card style={cardStyle} className="shadow" body inverse color="primary">
-          <CardTitle>Volunteer As Both</CardTitle>
-          <Button color="secondary" onClick={() => updateRole(3)}>
-            Volunteer
-          </Button>
-        </Card>
-      )}
-      <Container>
-        <Form>
-          <Row form>
-            <Col md={6}>
-              <FormGroup>
-                <Label for="startTime">Start Time</Label>
-                <Input
-                  type="time"
-                  name="startTime"
-                  id="startTime"
-                  required
-                  value={startTime}
-                  onChange={curr => setStartTime(curr.target.value)}
-                />
-              </FormGroup>
-            </Col>
-            <Col md={6}>
-              <FormGroup>
-                <Label for="endTime">End Time</Label>
-                <Input
-                  type="time"
-                  name="endTime"
-                  id="endTime"
-                  required
-                  value={endTime}
-                  onChange={curr => setEndTime(curr.target.value)}
-                />
-              </FormGroup>
-            </Col>
-          </Row>
-          <Mutation mutation={queries.INSERT_DONATION_VOLUNTEER}>
-            {(postMutation, { loading, error }) => {
-              if (loading) {
-                return <LoadingPopup />;
-              }
-              if (error) {
-                alert(error);
-                return null;
-              }
-              return (
-                <Button
-                  color="success"
-                  onClick={() => onVolunteerSubmit(postMutation)}
-                >
-                  Submit
-                </Button>
-              );
-            }}
-          </Mutation>
-        </Form>
-      </Container>
-    </>
-  );
-};
-
+    )
+  };
+  
 export default VolunteerSelection;

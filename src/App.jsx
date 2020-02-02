@@ -16,7 +16,7 @@ import DonationTracker from './containers/request_track';
 import Checkpoint from './containers/Checkpoint/Checkpoint';
 import RestaurantDonationNearby from './containers/Restaurant/RestaurantDonationNearby'
 import LeaderBoard from './containers/leader_board/LeaderBoard'
-
+import UploadPost from './containers/leader_board/UploadPost';
 import CheckpointCreate from './containers/Checkpoint/CheckpointCreate'
 import SlumRequest from './containers/slum_request/SlumRequest';
 
@@ -91,6 +91,11 @@ const App = () => {
           <Route exact path="/create_checkpoint/">
             <Navbar />
             <CheckpointCreate />
+          </Route>
+
+          <Route exact path="/upload_post/">
+            <Navbar />
+            <UploadPost />
           </Route>
 
           <Route exact path="/slum_request">

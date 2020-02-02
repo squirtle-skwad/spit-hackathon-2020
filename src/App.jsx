@@ -40,7 +40,7 @@ const App = () => {
       <main className="App">
         <Switch>
 
-          <Route exact path="/home">
+          <Route exact path="/">
             <Navbar/>
             <Home />
           </Route>
@@ -70,7 +70,7 @@ const App = () => {
             <RestaurantDonationNearby />
           </Route>
 
-          <Route exact path="/">
+          <Route exact path="/login">
             <NavbarLoginSignUp/>
             <Login />
           </Route>

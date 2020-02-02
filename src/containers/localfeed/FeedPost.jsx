@@ -4,13 +4,13 @@ import {
   } from 'reactstrap';
   
 const FeedPost = (props) => {
-    const { image, caption, userName } =  props.details 
+    const { picture, caption, user } =  props.details 
 
     return ( 
         <Card style={{ margin:"1rem" }} className=" shadow">
-            <CardImg top src={image} alt="Card image cap" />
+            <CardImg top src={picture} alt="Card picture cap" />
             <CardBody>
-                <CardSubtitle style={{color:"black"}}>{userName}</CardSubtitle>
+                <CardSubtitle style={{color:"black"}}>{user.name}</CardSubtitle>
                 <CardText>{caption}</CardText>
             </CardBody>
         </Card>

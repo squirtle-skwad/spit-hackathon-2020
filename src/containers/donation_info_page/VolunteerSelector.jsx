@@ -26,10 +26,11 @@ const VolunteerCard = ({ volunteer, onChange, selected, onStartTime, onEndTime }
                 <Row>
                     <Col xs={4} className="d-flex flex-column justify-content-center align-items-center">
                         <h3>{volunteer.start_time}</h3>
-                        <h6>People</h6>
+                        Start time
                     </Col>
-                    <Col xs={8} className="d-flex justify-content-center align-items-center">
+                    <Col xs={8} className="d-flex flex-column justify-content-center align-items-center">
                         <h3>{volunteer.end_time}</h3>
+                        End time
                     </Col>
                 </Row>
             </Container>

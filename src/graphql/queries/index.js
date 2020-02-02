@@ -199,3 +199,24 @@ query getActions($volunteerId: uuid!) {
   }
 }
 `;
+
+export const INSERT_POST = gql`
+mutation insertUserPost($userId:uuid!,$picture:String!,$caption:String!) {
+  __typename
+  insert_user_post(objects: {user_id: $userId, picture: $picture, caption: $caption}) {
+    affected_rows
+  }
+}
+`
+
+export const GET_POST = gql`
+query getPosts {
+  user_post(order_by: {created_at: asc}, limit: 9) {
+    picture
+    caption
+    user {
+      name
+    }
+  }
+}
+`

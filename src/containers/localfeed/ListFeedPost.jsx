@@ -2,19 +2,34 @@ import React from "react";
 import FeedPost from "./FeedPost";
 import slumImage from "../../assets/slum_image";
 import { CardColumns } from "reactstrap";
+import { Query } from "react-apollo";
+import LoadingPopUp from '../../components/Loader/LoadingPopup'
+import * as queries from '../../graphql/queries/index'
 
 const ListFeedPost = props => {
-  let feedPosts = [
-    { image: slumImage[0], userName: "Parag Vaid", caption: "Nicceee pic Loved it never felt so googd helping others Thank" },
-    { image: slumImage[0], userName: "Vikrant Gajria", caption: "Coool pic" },
-    { image: slumImage[1], userName: "Preet Shah", caption: "Coool pic" },
-    { image: slumImage[2], userName: "Ganan Mandhi", caption: "I'm a gud boy" },
-  ];
+  
   return (
     <CardColumns>
-      {feedPosts.map((value, index) => (
-        <FeedPost details={value} />
-      ))}
+      <Query query={queries.GET_POST}>
+        {
+          ({ data, loading, error }) => {
+            if (loading) {
+              return <LoadingPopUp />
+            }
+            if (error) {
+              return null
+            }
+            return (
+              data.user_post.map((value, index) =>
+                <FeedPost details={value} />
+              )
+            );
+          }
+
+
+        }
+      </Query>
+
     </CardColumns>
   );
 };

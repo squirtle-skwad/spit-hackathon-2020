@@ -64,7 +64,7 @@ const DonationRequest = () => {
       <SlumSelector onChange={setSlum} value={slum} />
 
       <Button type="submit" block className="my-1">Submit</Button>
-      {location.latitude} {location.longitude}
+      {/* {location.latitude} {location.longitude} */}
     </Form>
   );
 };

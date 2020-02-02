@@ -27,10 +27,6 @@ const DeckRestaurantAlerts = () => {
           }
 
           if (data) {
-            // donation_alert.push(...data.donation_request)
-            // donation_alert.sort(function(left,right){
-            //     return (left.delivery_by_time).diff(date)
-            // });
             return (
               <>
                 <h4 style={{ margin: "1rem" }}>Donation Alerts</h4>
@@ -50,6 +46,7 @@ const DeckRestaurantAlerts = () => {
                         placeName={value.donor.name}
                         donationRequestId={value.id}
                         slum={value.slum_area.name}
+                        deliverTime = {value.delivery_by_time}
                       />
                     </Col>
                   ))}

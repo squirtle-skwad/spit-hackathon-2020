@@ -37,8 +37,8 @@ const CustomNavbar = () => {
       <Navbar color="light" expand="lg" className="border-bottom border-aqua">
         {user.type.typeName === "volunteer" ? (
           <>
-          <Link tag={Link} to="/upload_post">
-            <Camera style={{marginRight:"1rem"}}/>
+          <Link tag={Link} to="/upload_post" className="mr-2">
+            <Camera />
           </Link>
           <Link tag={Link} to="/create_checkpoint">
             <MapPin />

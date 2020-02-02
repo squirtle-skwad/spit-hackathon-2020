@@ -83,7 +83,7 @@ const App = () => {
             <SignUpPageSelection />
           </Route>
 
-          <Route exact path="/leaderboard">
+          <Route exact path="/profile">
             <Navbar />
             <LeaderBoard />
           </Route>

@@ -5,6 +5,7 @@ import client from './graphql/client';
 
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Navbar from './components/Navbar';
+import NavbarLoginSignUp from './components/NavbarLoginSignUp';
 import Login from './containers/Login/Login';
 import SignUpPageDetails from './containers/SignUp/SignUpPageDetails';
 import SignUpPageSelection from './containers/SignUp/SignUpPageSelection';
@@ -13,9 +14,8 @@ import RestaurantVolunteerPage from './containers/donation_info_page';
 import DonationRequest from './containers/request_form';
 import DonationTracker from './containers/request_track';
 import Checkpoint from './containers/Checkpoint/Checkpoint';
-import RestaurantDonationNearby from './containers/Restaurant/RestaurantDonationNearby';
-import VolunteerTrack from './containers/volunteer_track/VolunteerTrack';
-import LeaderBoard from './containers/leader_board/LeaderBoard';
+import RestaurantDonationNearby from './containers/Restaurant/RestaurantDonationNearby'
+import LeaderBoard from './containers/leader_board/LeaderBoard'
 
 import CheckpointCreate from './containers/Checkpoint/CheckpointCreate'
 import SlumRequest from './containers/slum_request/SlumRequest';
@@ -40,8 +40,8 @@ const App = () => {
       <main className="App">
         <Switch>
 
-          <Route exact path="/">
-            <Navbar />
+          <Route exact path="/home">
+            <Navbar/>
             <Home />
           </Route>
 
@@ -70,7 +70,8 @@ const App = () => {
             <RestaurantDonationNearby />
           </Route>
 
-          <Route exact path="/login">
+          <Route exact path="/">
+            <NavbarLoginSignUp/>
             <Login />
           </Route>
 
@@ -80,14 +81,6 @@ const App = () => {
 
           <Route exact path="/signup/selection">
             <SignUpPageSelection />
-          </Route>
-
-          <Route exact path="/volunteer/tracker">
-            <VolunteerTrack />
-          </Route>
-
-          <Route exact path="/checkpoints/">
-            Checkpoints nearby
           </Route>
 
           <Route exact path="/leaderboard">

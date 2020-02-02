@@ -3,32 +3,56 @@ import {
   Navbar,
   NavbarBrand,
   Button,
+  DropdownItem,
+  DropdownMenu,
+  DropdownToggle,
+  Dropdown,
 } from 'reactstrap';
-import { Link } from 'react-router-dom';
-// import { useLocalStorage } from 'react-use';
-import { dummyUser } from '../helpers/auth';
 
+import { Link, Redirect, useHistory } from 'react-router-dom';
+import { getUserDetails } from '../helpers/auth';
+import NavbarLoginSignUp from './NavbarLoginSignUp'
 /**
  * @type {React.FC}
  */
 const CustomNavbar = () => {
-  const user =  dummyUser;
-  // const user = useLocalStorage("user");
+  const user = getUserDetails();
+  const history = useHistory()
+  console.log(user)
+ 
+    return(
+      (user !== null)
+      ?(
+      <Navbar color="primary" dark>
+      {user.type.typeName === 'volunteer' ? (
+        <Button className="mr-auto" tag={Link} to="/create_checkpoint">Volunteer</Button>
+      ): <Button className="mr-auto" tag={Link} to="/donate/request">Volunteer</Button>
+      };
 
-  return (
-    <Navbar color="primary" dark>
-      {user.type.typeName === 'volunteer' && (
-        <Button className="mr-auto" tag={Link} to="/volunteer">Volunteer</Button>
-      )}
-
-      <NavbarBrand tag={Link} to="/">FoodFeed</NavbarBrand>
+      <NavbarBrand tag={Link} to="/home">FoodFeed</NavbarBrand>
 
       {user.type.typeName === 'volunteer'
-        ? <Button className="ml-auto" tag={Link} to="/checkpoint">Checkpoints</Button>
-        : <Button className="ml-auto" tag={Link} to="/donation/request">Donate</Button>
+        ?(<Dropdown>
+            <DropdownToggle caret>Nearby</DropdownToggle>
+              <DropdownMenu>
+                <DropdownItem tag={Link} to="/donation_request">Restaurant</DropdownItem>
+                <DropdownItem divider />
+                <DropdownItem tag={Link} to="/checkpoint">Checkpoint</DropdownItem>
+            </DropdownMenu>
+          </Dropdown>)
+        : null
       }
-    </Navbar>
-  );
+      <Button className="ml-auto" tag={Link} onClick={()=>{
+        localStorage.clear()
+        history.push('/')
+      }}>LogOut</Button>
+      <Button className="ml-auto" tage={Link} to="/profile">Profile</Button>
+    </Navbar>)
+    :
+    <Redirect to="/"/>
+    
+  ); 
+  
 };
 
 export default CustomNavbar;

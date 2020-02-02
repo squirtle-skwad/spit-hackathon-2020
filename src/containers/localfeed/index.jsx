@@ -2,8 +2,7 @@ import React from "react";
 import ListFeedPost from "./ListFeedPost";
 import DeckRestaurantAlerts from "./DeckRestaurantAlerts";
 import DeckCheckpointAlerts from '../Checkpoint/DeckCheckpointAlerts'
-import { Container } from "reactstrap";
-
+import { Container} from "reactstrap";
 /**
  * @type {React.FC}
  */
@@ -11,11 +10,13 @@ import { Container } from "reactstrap";
 const Home = () => {
 
   return (
+    <>
     <Container>
       <DeckRestaurantAlerts />
       <DeckCheckpointAlerts/>
       <ListFeedPost />
     </Container>
+    </>
   );
 };
 

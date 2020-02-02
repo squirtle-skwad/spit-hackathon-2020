@@ -10,7 +10,7 @@ import Login from './containers/Login/Login';
 import SignUpPageDetails from './containers/SignUp/SignUpPageDetails';
 import SignUpPageSelection from './containers/SignUp/SignUpPageSelection';
 import Home from './containers/localfeed';
-import RestaurantVolunteerPage from './containers/donation_info_page'
+import RestaurantVolunteerPage from './containers/donation_info_page';
 import DonationRequest from './containers/request_form';
 import DonationTracker from './containers/request_track';
 import Checkpoint from './containers/Checkpoint/Checkpoint';
@@ -83,12 +83,13 @@ const App = () => {
             <SignUpPageSelection />
           </Route>
 
-          <Route exact path="/leaderboard">
+          <Route exact path="/profile">
             <Navbar />
             <LeaderBoard />
           </Route>
 
           <Route exact path="/create_checkpoint/">
+            <Navbar />
             <CheckpointCreate />
           </Route>
 

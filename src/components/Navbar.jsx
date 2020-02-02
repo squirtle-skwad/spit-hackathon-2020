@@ -1,65 +1,84 @@
-import React,{useState}from 'react';
+import React, { useState } from "react";
 import {
   Navbar,
-  NavbarBrand,
   Button,
   DropdownItem,
   DropdownMenu,
   DropdownToggle,
   Dropdown,
-  Row,
-  Col
-} from 'reactstrap';
+  Jumbotron,
+} from "reactstrap";
 
-import { Link, Redirect, useHistory } from 'react-router-dom';
-import { getUserDetails } from '../helpers/auth';
-import NavbarLoginSignUp from './NavbarLoginSignUp'
+import { Link, Redirect, useHistory } from "react-router-dom";
+import { getUserDetails } from "../helpers/auth";
+import { MapPin, User, LogOut, Gift } from 'react-feather';
+
 /**
  * @type {React.FC}
  */
 const CustomNavbar = () => {
   const user = getUserDetails();
-  const history = useHistory()
+  const history = useHistory();
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
   const toggle = () => setDropdownOpen(prevState => !prevState);
-  console.log(user)
- 
-    return(
-      (user !== null)
-      ?(
-      <Navbar color="primary" dark light expand="lg">
-      {user.type.typeName === 'volunteer' ? (
-        <Button className="mr-auto" tag={Link} to="/create_checkpoint">CreateCheckpoint</Button>
-      ): <Button className="mr-auto" tag={Link} to="/donate/request">Donate</Button>
-      };
 
-      <NavbarBrand tag={Link} to="/">FoodFeed</NavbarBrand>
-      <Row xs="4">
-        <Col></Col>
-      {user.type.typeName === 'volunteer'
-        ?(<Col><Dropdown isOpen={dropdownOpen} toggle={toggle} style={{marginRight:"4rem"}}>
-            <DropdownToggle caret>Nearby</DropdownToggle>
+  if(!user) {
+    return <Redirect to="/login" />;
+  }
+
+  return (
+    <>
+      <Jumbotron className="d-flex bg-primary flex-column justify-content-center align-items-center m-0 py-2">
+        <Link to="/">
+          <h1 className="text-white">FoodFeed</h1>
+        </Link>
+      </Jumbotron>
+      <Navbar color="light" expand="lg" className="border-bottom border-aqua">
+        {user.type.typeName === "volunteer" ? (
+          <Link tag={Link} to="/create_checkpoint">
+            <MapPin />
+          </Link>
+        ) : (
+          <Button tag={Link} to="/donate/request">
+            <Gift />
+          </Button>
+        )}
+        {user.type.typeName === "volunteer" ? (
+            <Dropdown
+              outline
+              className="ml-4 btn-primary"
+              isOpen={dropdownOpen}
+              toggle={toggle}
+            >
+              <DropdownToggle caret color="primary">Nearby</DropdownToggle>
               <DropdownMenu>
-                <DropdownItem tag={Link} to="/donation_request">Restaurant</DropdownItem>
+                <DropdownItem tag={Link} to="/donation_request">
+                  Restaurant
+                </DropdownItem>
                 <DropdownItem divider />
-                <DropdownItem tag={Link} to="/checkpoint">Checkpoint</DropdownItem>
-            </DropdownMenu>
-          </Dropdown></Col>)
-        : null
-      }
-      <Col><Button style={{marginRight:"0rem"}}tag={Link} className="" onClick={()=>{
-        localStorage.clear()
-        history.push('/login')
-      }}>Logout</Button></Col>
-      <Col><Button className="ml-auto" tage={Link} to="/profile">Profile</Button></Col>
-      </Row>
-    </Navbar>)
-    :
-    <Redirect to="/login"/>
-    
-  ); 
-  
+                <DropdownItem tag={Link} to="/checkpoint">
+                  Checkpoint
+                </DropdownItem>
+              </DropdownMenu>
+            </Dropdown>
+        ) : null}
+
+        <Link className="ml-auto"
+          onClick={() => {
+            localStorage.clear();
+            history.push("/login");
+          }}
+        >
+          <LogOut />
+        </Link>
+
+        <Link to="/profile" className="ml-4">
+          <User />
+        </Link>
+      </Navbar>
+    </>
+  );
 };
 
 export default CustomNavbar;

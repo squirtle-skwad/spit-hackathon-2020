@@ -17,6 +17,12 @@ const RestaurantAlerts = (props) => {
 
     const toggle = () => setModal(!modal);
 
+    // const expireTime = (deliverTime) => {
+    //     if(deliverTime > Date.now()){
+    //         return deliverTime-Date.now()
+    //     }
+    //     return Date.now()-deliverTime
+    // }
 
     return (
         <>
@@ -28,7 +34,7 @@ const RestaurantAlerts = (props) => {
                         <SimpleMap lat={lat} lng={lng} placeName={placeName} />
                         <h4><Badge color="secondary" light style={{marginRight:"1rem"}}>Quantity</Badge> {quantity}kg</h4>
                         <h4><Badge color="primary" dark style={{marginRight:"1rem"}}>Slum</Badge>{slum}</h4>
-                        <CountDownClock expireTime={(deliverTime-Date.now()) / 1000} />
+                        {/* <CountDownClock expireTime={expireTime(deliverTime) / 1000} /> */}
                     </ModalBody>
                     <ModalFooter>
                         <Button color="primary" onClick={()=>redirectVolunteerFeed()}>Volunteer</Button>{' '}

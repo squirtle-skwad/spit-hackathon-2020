@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import {
     Card, CardTitle, Input, Form, FormGroup,
-    Col, Row, Label, Button, Container
+    Col, Row, Label, Button, Container, CardImg
 } from 'reactstrap';
 import VolunteerSelector from './VolunteerSelector'
 import { Mutation, useApolloClient } from 'react-apollo'
@@ -10,11 +10,13 @@ import LoadingPopup from '../../components/Loader/LoadingPopup'
 import { useParams, useHistory } from 'react-router-dom';
 import { getUserDetails } from '../../helpers/auth'
 import { useGeolocation } from 'react-use'
+import gps from '../../assets/images/gps.png'
+import loving from '../../assets/images/loving.png'
 
 const VolunteerSelection = (props) => {
     let { donationRequestId } = useParams()
     let user = getUserDetails()
-    const cardStyle = { margin: "2rem" }
+    const cardStyle = { margin: "2rem", color: "#ff9500" }
     const cardStyleActive = { margin: "2rem", border: "2px solid green" }
     const [volunteer, setVolunteer] = useState(null);
     const [startTime, setStartTime] = useState();
@@ -96,7 +98,7 @@ const VolunteerSelection = (props) => {
                                             donationRequestId: donationRequestId
                                         }
                                     }).then((resp) => {
-                                        routeHistory.push('/tracker/'+donationRequestId)
+                                        routeHistory.push('/tracker/' + donationRequestId)
                                     })
                                 });
                             })
@@ -128,7 +130,7 @@ const VolunteerSelection = (props) => {
                                 donationRequestId: donationRequestId
                             }
                         }).then((resp) => {
-                            routeHistory.push('/tracker/'+donationRequestId)
+                            routeHistory.push('/tracker/' + donationRequestId)
                         })
                     });
                 }
@@ -148,16 +150,32 @@ const VolunteerSelection = (props) => {
         <>
             {(role === 1) ?
                 <>
-                    <Card style={cardStyleActive} className="shadow" body inverse color="info">
-                        <CardTitle>Volunteer As A Picker And Distributer</CardTitle>
-                        <Button color="secondary" onClick={() => updateRole(1)}>Volunteer</Button>
+                    <Card style={{ margin: "2rem", background: "#241501" }} className="shadow" body inverse >
+                        <Row>
+                            <Col sm="2">
+                                <CardImg src={loving} style={{ width: "6rem", height: "6rem", marginLeft: "2rem" }} />
+                            </Col>
+                            <Col sm="10">
+                                <CardTitle>Volunteer As A Picker And Distributer</CardTitle>
+                                <Button color="primary" onClick={() => updateRole(1)}>Volunteer</Button>
+
+                            </Col>
+                        </Row>
                     </Card>
                     <VolunteerSelector onChange={setVolunteer} onStartTime={setStartTime} onEndTime={setEndTime} value={volunteer} role={"transporter"} donationRequestId={donationRequestId} />
                 </>
                 :
-                <Card style={cardStyle} className="shadow" body inverse color="info">
-                    <CardTitle>Volunteer As A Picker And Distributer</CardTitle>
-                    <Button color="secondary" onClick={() => updateRole(1)}>Volunteer</Button>
+                <Card style={{ margin: "2rem", background: "#241501" }} className="shadow" body inverse >
+                    <Row>
+                        <Col sm="2">
+                            <CardImg src={loving} style={{ width: "6rem", height: "6rem", marginLeft: "2rem" }} />
+                        </Col>
+                        <Col sm="10">
+                            <CardTitle>Volunteer As A Picker And Distributer</CardTitle>
+                            <Button color="primary" onClick={() => updateRole(1)}>Volunteer</Button>
+
+                        </Col>
+                    </Row>
                 </Card>
             }
             {(role === 2) ?

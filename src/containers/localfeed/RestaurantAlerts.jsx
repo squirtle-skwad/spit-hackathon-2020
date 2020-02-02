@@ -9,6 +9,7 @@ import "./RestaurantAlerts.css";
 
 const RestaurantAlerts = (props) => {
     const { lat, lng, placeName, distance, quantity, donationRequestId, deliverTime, slum } = props
+    const datedeliverTime = new Date(deliverTime)
     const routeHistory = useHistory()
     const redirectVolunteerFeed = (e) => {
         routeHistory.push('donation/'+donationRequestId)
@@ -28,7 +29,7 @@ const RestaurantAlerts = (props) => {
                         <SimpleMap lat={lat} lng={lng} placeName={placeName} />
                         <h4><Badge color="secondary" light style={{marginRight:"1rem"}}>Quantity</Badge> {quantity}kg</h4>
                         <h4><Badge color="primary" dark style={{marginRight:"1rem"}}>Slum</Badge>{slum}</h4>
-                        {/* <CountDownClock expireTime={(deliverTime-Date.now()) / 1000} /> */}
+                        <CountDownClock expireTime={(datedeliverTime-Date.now()) / 1000} />
                     </ModalBody>
                     <ModalFooter>
                         <Button color="primary" onClick={()=>redirectVolunteerFeed()}>Volunteer</Button>{' '}

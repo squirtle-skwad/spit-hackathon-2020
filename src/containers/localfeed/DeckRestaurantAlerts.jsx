@@ -50,6 +50,7 @@ const DeckRestaurantAlerts = () => {
                         placeName={value.donor.name}
                         donationRequestId={value.id}
                         slum={value.slum_area.name}
+                        deliverTime = {value.delivery_by_time}
                       />
                     </Col>
                   ))}

@@ -53,21 +53,29 @@ const DonationRequestTracker = () => {
       <GoogleMap logs={dataChain.donation_chain} />
       <Jumbotron className="d-flex justify-content-center align-items-center flex-column m-0">
         <Choose>
-          <Choose.When condition={state === null}>
+          <Choose.When condition={(state === null || state === 0) && role === 'restaurant'}>
             <ActionButton state={1}>Gave Food</ActionButton>
           </Choose.When>
-          <Choose.When condition={state === 1}>
-            <ActionButton state={2}>Food Taken</ActionButton>
-            <ActionButton state={11}>Food is Bad</ActionButton>
+          <Choose.When condition={state === 1 && role === 'transporter'}>
+            <div className="d-flex flex-column">
+              <ActionButton state={2} className="my-1">Food Taken</ActionButton>
+              <ActionButton state={11} className="my-1">Food is Bad</ActionButton>
+            </div>
           </Choose.When>
-          <Choose.When condition={state === 2}>
+          <Choose.When condition={state === 2 && role === 'transporter'}>
             <ActionButton state={3}>Food Delivered</ActionButton>
           </Choose.When>
-          <Choose.When condition={state === 3}>
+          <Choose.When condition={state === 3 && role === 'distributor'}>
             <ActionButton state={4}>Food Distributed</ActionButton>
           </Choose.When>
           <Choose.When condition={state === 4 || state === 11}>
             <h3>Thank you for contributing to a better society!</h3>
+          </Choose.When>
+          <Choose.When condition={state === 11 && role === 'restaurant'}>
+            <h3>The food was rejected</h3>
+          </Choose.When>
+          <Choose.When condition={state === 11 && role !== 'restaurant'}>
+            <h3>Food was rejected</h3>
           </Choose.When>
           <Choose.Otherwise>
             <span>Status = {state}</span>

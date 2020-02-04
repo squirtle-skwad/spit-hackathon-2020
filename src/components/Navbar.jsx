@@ -60,11 +60,14 @@ const CustomNavbar = () => {
             <DropdownMenu>
               <DropdownItem tag={Link} to="/donation_request">
                 Restaurant
-                </DropdownItem>
+              </DropdownItem>
               <DropdownItem divider />
               <DropdownItem tag={Link} to="/checkpoint">
                 Checkpoint
-                </DropdownItem>
+              </DropdownItem>
+              <DropdownItem tag={Link} to="/slum_request">
+                Report Slum
+              </DropdownItem>
             </DropdownMenu>
           </Dropdown>
         ) : null}

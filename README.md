@@ -2,6 +2,8 @@
 ##### SPIT Hackathon 2020
 > Redistribution of wasted food to slums
 
+### [GO TO PRESENTATION FOR SCREENSHOTS](/PRESENTATION.PDF)
+
 ## Build instructions
 
 Install all packages using `npm install` or `yarn install`.

@@ -29,10 +29,10 @@ It was built by 3 developers in 24 hours, from 11.30AM on February 1 to 11.30AM 
 > [github.com/vixrant](https://github.com/vixrant)
 
 > Parag Vaid
-> [github.com/Rushabhshroff](https://github.com/parag1999)
+> [github.com/parag1999](https://github.com/parag1999)
 
 > Preet Shah
-> [github.com/YashJaveri](https://github.com/preet4737)
+> [github.com/preet4737](https://github.com/preet4737)
 
 ## Failures
 
